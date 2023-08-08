@@ -25,6 +25,9 @@ import MyCoupon from "./pages/MyCoupon";
 import MyID from "./pages/MyID";
 import ProductCompare from "./pages/ProductCompare";
 import EditProfile from "./pages/EditProfile";
+import CategoryPage from "./pages/CategoryPage";
+import ShopPage from "./pages/ShopPage";
+import ShopPageFilter from "./pages/ShopPage-filter";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -69,6 +72,9 @@ function App() {
               <Route path="/shipping-address/add" element={<AddShippingAddress />}/>
               <Route path="/shipping-address/edit" element={<EditShippingAddress />}/>
               <Route path="/edit-profile" element={<EditProfile />}/>
+              <Route path="/categories" element={<CategoryPage />}/>
+              <Route path="/shop" element={<ShopPage />}/>
+              <Route path="/shop/filter" element={<ShopPageFilter />}/>
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />
