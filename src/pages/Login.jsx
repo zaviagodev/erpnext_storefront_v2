@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/useUser';
 import { getToken } from '../utils/helper';
 
+
+
 export default function Login() {
     const { login } = useUser();
     const navigate = useNavigate();
@@ -28,6 +30,14 @@ export default function Login() {
         },
         onSubmit: values => login(values.usr, values.pwd).then(() => navigate("/"))
     });
+
+
+    function handleClick(e) {
+        const url = window.location.href = "https://access.line.me/oauth2/v2.1/authorize?redirect_uri=https://dev.zaviago.com/api/method/honda_api.api_calls.linehandle.login_via_line&state=eyJzaXRlIjogImh0dHA6Ly8xMjcuMC4wLjE6ODAwMCIsICJ0b2tlbiI6ICI1ZTA1ZjBiYWRhMmEwOTI4ZjUwNDJkYThiMjc3ODhkNGQzNzAzZDVlYTEzNTFhYjI5NGIyNTVmNSIsICJyZWRpcmVjdF90byI6IG51bGx9&response_type=code&scope=openid+profile+email&client_id=2000312030"
+        navigate(url)
+    }
+
+
     return (
         <form className="p-4 flex gap-4 flex-wrap text-neutral-900 text-start" onSubmit={formik.handleSubmit}>
             <h2 className="w-full typography-headline-4 md:typography-headline-3 font-bold">Sign in</h2>
@@ -43,6 +53,9 @@ export default function Login() {
 
             <div className="w-full flex gap-4 mt-4 md:mt-0">
               <SfButton className="w-full" type='submit'>{isLoading ? 'Loading...' : 'login'}</SfButton>
+            </div>
+            <div className="w-full flex gap-4 mt-4 md:mt-0">
+              <SfButton onClick={handleClick} className="w-full" type='button'>{isLoading ? 'Loading...' : 'Line Login'}</SfButton>
             </div>
         </form>
     );
