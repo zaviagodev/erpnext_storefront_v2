@@ -22,7 +22,7 @@ const FooterMenu = ({active}) => {
     {
       icon:(<Grid01 />),
       title:"หมวดหมู่",
-      link:"/",
+      link:"/categories",
       current:1
     },
     {

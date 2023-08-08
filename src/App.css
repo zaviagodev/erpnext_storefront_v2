@@ -66,8 +66,15 @@
   margin-left:280px;
 }
 
-.payment-check {
+.payment-check,.shop-filter-check {
+  position:absolute;
   opacity:0;
+}
+
+.shop-filter-check:checked ~ .shop-filter-radios {
+  background-color:black;
+  border:2px solid white;
+  outline:1px solid black;
 }
 
 .payment-check:checked ~ .payment-radios {
@@ -78,7 +85,7 @@
   background-repeat:no-repeat
 }
 
-.payment-radios {
+.payment-radios, .shop-filter-radios {
   border:3px solid #C1C1C1;
   background-color:white;
   width:23px;
