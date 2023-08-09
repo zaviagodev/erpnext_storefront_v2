@@ -29,6 +29,8 @@ import CategoryPage from "./pages/CategoryPage";
 import ShopPage from "./pages/ShopPage";
 import ShopPageFilter from "./pages/ShopPage-filter";
 import ShopPageType from "./pages/ShopPage-type";
+import Wishlist from "./pages/Wishlist";
+import RewardPage from "./pages/RewardPage";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -77,6 +79,8 @@ function App() {
               <Route path="/shop" element={<ShopPage />}/>
               <Route path="/shop/filter" element={<ShopPageFilter />}/>
               <Route path="/shop/type" element={<ShopPageType />}/>
+              <Route path="/wishlist" element={<Wishlist />}/>
+              <Route path="/reward" element={<RewardPage />}/>
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />
