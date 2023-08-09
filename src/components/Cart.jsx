@@ -53,7 +53,7 @@ const Cart = () => {
                 placement='right'
                 open
                 onClose={() => setIsOpen(false)}
-                className="bg-neutral-50 border border-gray-300 w-full z-[999]"
+                className="bg-neutral-50 w-full z-[999]"
             >
                 {cartPage && (
                   <>

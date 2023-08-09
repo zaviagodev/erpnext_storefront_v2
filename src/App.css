@@ -127,12 +127,17 @@
   text-align:center;
 }
 
+.product-colour-input:checked ~ .product-colour-checkbox {
+  outline:2px solid black;
+}
+
 .product-colour-checkbox {
   width:32px;
   height:32px;
   display:inline-block;
   border-radius:99px;
-  margin-bottom:10px;
+  margin:0 auto 10px;
+  border:2px solid white;
 }
 
 @keyframes borderAnim {

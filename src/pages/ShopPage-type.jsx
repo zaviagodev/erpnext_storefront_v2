@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import TitleHeader from "../components/TitleHeader"
 import Accordion from '../components/Accordion'
+import { Link } from 'react-router-dom'
 
-const ShopPageType = () => {
+const ShopPageType = ({min, max, onChange}) => {
   const [accordionActiveOne, setAccordionActiveOne] = useState(false);
   const [accordionActiveTwo, setAccordionActiveTwo] = useState(false);
   const [accordionActiveThree, setAccordionActiveThree] = useState(false);
@@ -127,10 +128,10 @@ const ShopPageType = () => {
         </div>
       ),
       content:(
-        <div className='flex gap-y-[30px] w-full'>
+        <div className='flex gap-x-8 flex-wrap w-full'>
           {productColours.map((colour) => 
-            <label htmlFor={colour.key} className='flex flex-col justify-center gap-x-[14px]'>
-              <input type='checkbox' name='product-type' id={colour.key} className='product-colour-input' onClick={(e) => {e.target.checked ? setAccordionActiveOne(true) : setAccordionActiveOne(false)}}/>
+            <label htmlFor={colour.key} className='flex flex-col justify-center gap-x-[14px] text-center'>
+              <input type='checkbox' name='product-type' id={colour.key} className='product-colour-input' onClick={(e) => {e.target.checked ? setAccordionActiveThree(true) : setAccordionActiveThree(false)}}/>
               <span className='product-colour-checkbox' style={{backgroundColor:colour.colour}}/>
               {colour.text}
             </label>
@@ -147,7 +148,17 @@ const ShopPageType = () => {
           }}>เคลียร์การค้นหา</div>
         </div>
       ),
-      content:'โอ้โห'
+      content:(
+        <div>
+          <div className='flex justify-between'>
+            <input type="number" className='p-[6px] text-center border border-[#D8DADC] rounded-[6px] w-[83px]' id='price-min-num' onClick={(e) => e.target.focus()} onKeyDown={(e) => {if (e.key === "Enter"){document.getElementById('price-min').value = e.target.value}}} />
+            <input type="number" className='p-[6px] text-center border border-[#D8DADC] rounded-[6px] w-[83px]' id='price-max-num' onClick={(e) => e.target.focus()} onKeyDown={(e) => {if (e.key === "Enter"){document.getElementById('price-max').value = e.target.value}}}/>
+          </div>
+
+          <input type="range" name="price-min" id="price-min" min="0" max="1000"/>
+          <input type="range" name="price-max" id="price-max" min="0" max="1000"/>
+        </div>
+      )
     }
   ]
   return (
@@ -156,6 +167,10 @@ const ShopPageType = () => {
       <main>
         <Accordion items={itemLists}/>
       </main>
+      <footer className='flex p-5 gap-x-3 absolute bottom-0 w-full'>
+        <button className='w-1/2 bg-white border border-[#111111] text-[#111111] rounded-[9px] p-3 text-center'>เคลียร์การค้นหา</button>
+        <button className='w-1/2 bg-[#111111] border border-[#111111] text-white rounded-[9px] p-3 text-center'>ค้นหาสินค้า</button>
+      </footer>
     </>
   )
 }
