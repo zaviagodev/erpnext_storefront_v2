@@ -66,9 +66,25 @@
   margin-left:280px;
 }
 
-.payment-check,.shop-filter-check {
+.payment-check,.shop-filter-check,.product-type-input,.size-input,.product-colour-input {
   position:absolute;
   opacity:0;
+}
+
+.product-type-checkbox {
+  width:20px;
+  height:20px;
+  border:1px solid #333333;
+  box-sizing:border-box;
+  display:inline-block;
+  border-radius:4px;
+}
+
+.product-type-input:checked ~ .product-type-checkbox {
+  background-color:#333333;
+  background-image:url('img/checked-box.svg');
+  background-position:center;
+  background-repeat:no-repeat
 }
 
 .shop-filter-check:checked ~ .shop-filter-radios {
@@ -92,6 +108,31 @@
   height:23px;
   display:inline-block;
   border-radius:99px;
+}
+
+.size-btn {
+  height:36px;
+}
+
+.size-input:checked ~ .size-text {
+  border-color:#111111;
+}
+
+.size-text {
+  border:1px solid #D8DADC;
+  padding:5px;
+  display:inline-block;
+  border-radius:6px;
+  width:55px;
+  text-align:center;
+}
+
+.product-colour-checkbox {
+  width:32px;
+  height:32px;
+  display:inline-block;
+  border-radius:99px;
+  margin-bottom:10px;
 }
 
 @keyframes borderAnim {

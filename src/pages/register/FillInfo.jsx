@@ -36,7 +36,12 @@ const FillInfo = () => {
           </div>
 
           <div className='flex flex-col'>
-            <label htmlFor='birthdate'>วันเกิดของคุณ</label>
+            <label htmlFor='id-number'>เลขบัตรประจำตัวประชาชน</label>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='id-number' name='id-number' type='text'/>
+          </div>
+
+          <div className='flex flex-col'>
+            <label htmlFor='birthdate'>วัน/เดือน/ปีเกิด</label>
             <input type="date" className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='birthdate' name='birthdate'/>
           </div>
         </form>

@@ -36,7 +36,7 @@ const ShopPage = () => {
 
         <div className="border-b border-b-[#F2F2F2] flex">
           <Link to='/shop/filter' className='block p-4 w-1/2 border-r border-r-[#F2F2F2] text-center'>ประเภทสินค้า</Link>
-          <Link className='block p-4 w-1/2 text-center'>ลักษณะสินค้า</Link>
+          <Link to='/shop/type' className='block p-4 w-1/2 text-center'>ลักษณะสินค้า</Link>
         </div>
       </main>
     </>

@@ -2,6 +2,7 @@ import FooterMenu from "../components/FooterMenu"
 import searchIcon from '../img/search-md-black.svg'
 import { useCart } from '../hooks/useCart';
 import { ShoppingBag01, ChevronRight } from "@untitled-ui/icons-react";
+import { Link } from 'react-router-dom'
 
 const CategoryPage = () => {
   const { cartCount, setIsOpen } = useCart()
@@ -32,14 +33,14 @@ const CategoryPage = () => {
           <div className="flex flex-col grow">
             {allCates.map((cate) => {
               return (
-                <button className='flex justify-between items-center px-5 py-[17px] w-full border-b border-b-[#E3E3E3]'>
+                <Link to='/shop' className='flex justify-between items-center px-5 py-[17px] w-full border-b border-b-[#E3E3E3]'>
                   <div className='flex gap-x-[10px]'>
                     {cate}
                   </div>
                   <div>
                     <ChevronRight />
                   </div>
-                </button>
+                </Link>
               )
             })}
           </div>
