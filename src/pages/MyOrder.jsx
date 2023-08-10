@@ -23,7 +23,7 @@ const MyOrder = () => {
         </Link>
         รายละเอียดคำสั่งซื้อ
       </header>
-      <main className="p-5">
+      <main className="p-5 flex flex-col gap-y-[18px]">
         {data && (
           <>
             {data.map((d) => 
