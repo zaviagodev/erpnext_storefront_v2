@@ -6,6 +6,8 @@ import testImg from '../img/test-img.png'
 const MyOrderDetails = () => {
   const { id } = useParams()
 
+  const [discounted, setDiscounted] = useState(false);
+
   const { data, isLoading, error } = useFrappeGetDoc('Sales Invoice', id, {
     fields: ['name', 'address', 'status', 'due_date', 'customer_address', 'items']
   })
@@ -47,7 +49,7 @@ const MyOrderDetails = () => {
             <div className='bg-[#F0FFF7] p-3 rounded-[7px] border border-[#70DFA3] text-[#0E964D] mt-3 text-[13px]'>
               กรุณาชำระเงินด้วย QR พร้อมเพย์ ภายใน {data.due_date} เวลา 10:30 มิฉะนั้น ระบบจะยกเลิกออเดอร์อัตโนมัติ
             </div>
-            
+
             <Link to='/shipping-address' className='flex justify-between items-center py-[17px] w-full mt-[13px]'>
               <div className='flex gap-x-[10px] font-bold text-[#333333] text-sm items-center'>
                 <MarkerPin01 />
