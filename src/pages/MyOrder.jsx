@@ -2,9 +2,10 @@ import React, { useState, useRef } from "react"
 import { ArrowLeft } from "@untitled-ui/icons-react"
 import { useFrappeGetDocList } from "frappe-react-sdk"
 import testImg from '../img/test-img.png'
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 const MyOrder = () => {
+  const { id } = useParams();
   const { data, isLoading, error } = useFrappeGetDocList('Sales Invoice', {
     fields: ['name', 'posting_date', 'status', 'total']
   })
@@ -26,7 +27,7 @@ const MyOrder = () => {
         {data && (
           <>
             {data.map((d) => 
-            <Link to='/my-order-details'>
+            <Link to={`/my-order-details/${d.name}`}>
               <div className="flex gap-x-[6px] items-center text-xs font-bold">
                 <div className={`w-3 h-3 bg-[${d.status == "Draft" ? "#EAB600" : d.status == "Paid" ? "#009FF0" : "#000000"}] rounded-[99px]`}/>
                 {d.status == "Draft" ? "รอการชำระเงิน" : d.status == "Paid" ? "เตรียมการจัดส่ง" : d.status == "Cancelled" ? "ยกเลิก" : "รับที่สาขา"}

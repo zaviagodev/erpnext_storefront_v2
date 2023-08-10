@@ -70,7 +70,7 @@ function App() {
               <Route path="/my-account" element={<MyAccount />}/>
               <Route path="/my-id" element={<MyID />}/>
               <Route path="/my-order" element={<MyOrder />}/>
-              <Route path="/my-order-details" element={<MyOrderDetails />}/>
+              <Route path="/my-order-details/:id" element={<MyOrderDetails />}/>
               <Route path="/my-coupon" element={<MyCoupon />}/>
               <Route path="/welcome" element={<Welcome />}/>
               <Route path="/signup" element={<Signup />}/>
