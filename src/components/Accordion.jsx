@@ -2,15 +2,7 @@ import { ChevronRight } from "@untitled-ui/icons-react"
 import { useState, useRef } from "react"
 
 const Accordion = ({items}) => {
-  const [activeIndex, setActiveIndex] = useState(-1);
-
-  const [active, setActive] = useState(null);
-
   const content = useRef(null);
-
-//   const handleClick = (index) => {
-//     setActiveIndex(index === activeIndex ? -1 : index)
-//   }
 
   const handleClick = (event) => {
     event.currentTarget.classList.toggle("active");

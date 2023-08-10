@@ -48,7 +48,7 @@ const MyAccount = () => {
   const AccountMenu = ({icon, title, link}) => {
     return (
       <Link to={link} className='flex justify-between items-center px-5 py-[17px] w-full'>
-        <div className='flex gap-x-[10px]'>
+        <div className='flex gap-x-[10px] text-sm text-[#111111] items-center'>
           {icon}
           {title}
         </div>
@@ -156,7 +156,7 @@ const MyAccount = () => {
             </div>
           </div>
         )}
-        {error && (
+        {isLoading || error && (
           <div className='flex items-center'>
             <svg className="h-[64px] w-[64px] bg-white text-gray-300 rounded-[99px]" fill="currentColor" viewBox="0 0 24 24">
               <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -215,15 +215,15 @@ const MyAccount = () => {
           <hr style={{borderColor:"#F2F2F2"}}/>
 
           <div className='p-5 w-full flex'>
-            <Link to="#" className='basis-1/3 text-sm flex flex-col items-center text-center'>
+            <Link to="/wishlist" className='basis-1/3 text-sm flex flex-col items-center text-center text-[#333333] gap-y-[10px]'>
               <Heart color='#333333'/>
               รายการสินค้า<br/>ที่ถูกใจ
             </Link>
-            <Link to="#" className='basis-1/3 text-sm flex flex-col items-center text-center'>
+            <Link to="/my-order" className='basis-1/3 text-sm flex flex-col items-center text-center text-[#333333] gap-y-[10px]'>
               <File06 color='#333333'/>
               คำสั่งซื้อ<br/>ของฉัน
             </Link>
-            <Link to="#" className='basis-1/3 text-sm flex flex-col items-center text-center'>
+            <Link to="#" className='basis-1/3 text-sm flex flex-col items-center text-center text-[#333333] gap-y-[10px]'>
               <ClockRewind color='#333333'/>
               สินค้าที่<br/>ดูล่าสุด
             </Link>
@@ -261,7 +261,7 @@ const MyAccount = () => {
         <h2 className='mt-[30px] mb-[10px]'>บัญชี</h2>
         <div className='flex flex-col bg-white rounded-[6px] items-center gap-y-[10px]' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
           <button className='flex justify-between items-center px-5 py-[17px] w-full' onClick={() => setOpenLogout(true)}>
-            <div className='flex gap-x-[10px]'>
+            <div className='flex gap-x-[10px] text-sm text-[#111111] items-center'>
               <LogOut02 />
               ออกจากระบบ
             </div>

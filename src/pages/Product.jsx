@@ -159,26 +159,26 @@ const Product = () => {
         </nav>
         <main className="mx-auto">
             <div className="relative flex w-full max-h-[600px] aspect-[4/3] ">
-                <SfScrollable
-                    className="relative w-full h-full snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-                    direction="vertical"
-                    wrapperClassName="h-full"
-                    buttonsPlacement="none"
-                    drag={{ containerWidth: true }}
-                >
-                    <div className="absolute inline-flex items-center justify-center text-sm font-medium text-white bg-secondary-600 py-1.5 px-3 mb-4">
-                        <SfIconSell size="sm" className="mr-1.5" />
-                        Sale
-                    </div>
-                    <div className="flex justify-center h-full basis-full shrink-0 grow snap-center">
-                        <img
-                            src={`${product?.website_image}`}
-                            className="object-contain w-auto h-full"
-                            aria-label={product?.website_image}
-                            alt={product?.website_image}
-                        />
-                    </div>
-                </SfScrollable>
+              <SfScrollable
+                className="relative w-full h-full snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+                direction="vertical"
+                wrapperClassName="h-full"
+                buttonsPlacement="none"
+                drag={{ containerWidth: true }}
+              >
+                <div className="absolute inline-flex items-center justify-center text-sm font-medium text-white bg-secondary-600 py-1.5 px-3 mb-4">
+                  <SfIconSell size="sm" className="mr-1.5" />
+                  Sale
+                </div>
+                <div className="flex justify-center h-full basis-full shrink-0 grow snap-center">
+                  <img
+                    src={`https://dev.zaviago.com${product?.website_image}`}
+                    className="object-contain w-auto h-full"
+                    aria-label={product?.website_image}
+                    alt={product?.website_image}
+                  />
+                </div>
+              </SfScrollable>
             </div>
             <section className="md:max-w-[640px] mt-4 px-4">
               <div className='flex justify-between w-full'>

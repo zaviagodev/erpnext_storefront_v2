@@ -28,7 +28,7 @@ const FooterMenu = ({active}) => {
     {
       icon:(<Award03 />),
       title:"สะสมแต้ม",
-      link:"/",
+      link:"/reward",
       current:2
     },
     {

@@ -64,15 +64,16 @@ const Checkout = () => {
     const tooltipHide = {
       visibility:"hidden",
       opacity:"0",
-      transform:"translateY(11px)",
+      transform:"translateY(9px)",
       transition:"all 300ms"
     }
 
     const tooltipShow = {
       visibility:"visible",
       opacity:"1",
-      transform:"translateY(8px)",
-      transition:"all 300ms"
+      transform:"translateY(6px)",
+      filter:"drop-shadow(0 12px 16px #10182814)",
+      transition:"all 300ms",
     }
 
     const [showTooltipCVV, setShowTooltipCVV] = useState(tooltipHide);
@@ -448,11 +449,14 @@ const Checkout = () => {
                 <div className='flex flex-col w-1/2'>
                   <label htmlFor='cvv'>CVV</label>
                   <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='cvv' name='cvv' type='text'/>
-                  <div className='absolute right-[27px] translate-y-[44px]' onMouseEnter={() => setShowTooltipCVV(tooltipShow)} onMouseLeave={() => setShowTooltipCVV(tooltipHide)}>
-                    <HelpCircle color="#333333"/>
+                  <div className='absolute right-[31px] translate-y-[47px]' onMouseEnter={() => setShowTooltipCVV(tooltipShow)} onMouseLeave={() => setShowTooltipCVV(tooltipHide)}>
+                    <HelpCircle color="#333333" viewBox='0 0 24 24' width='18' height='18'/>
                   </div>
-                  <div className='absolute bg-[#8A8A8A] px-3 py-2 rounded-[12px] text-white right-[18px]' style={showTooltipCVV}>
-                    <p className='text-xs'>เลข 3 ตัว หลังบัตรของคุณ</p>
+                  <div className='absolute right-[11px]' style={showTooltipCVV}>
+                    <div className='bg-[#8A8A8A] px-3 py-2 rounded-[12px] text-white right-[18px] z-[9]'>
+                      <p className='text-xs'>เลข 3 ตัว หลังบัตรของคุณ</p>
+                    </div>
+                    <div className='w-[12px] h-[12px] inline-block bg-[#8A8A8A] z-[6] rounded-[1px] rotate-45 relative bottom-[12px] left-[127px]'/>
                   </div>
                 </div>
               </div>

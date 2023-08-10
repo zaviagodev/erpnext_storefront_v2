@@ -22,16 +22,22 @@ import Signup from "./pages/register/Signup";
 import FillInfo from "./pages/register/FillInfo";
 import Success from "./pages/register/Success";
 import MyCoupon from "./pages/MyCoupon";
+import MyOrder from "./pages/MyOrder";
+import MyOrderDetails from "./pages/MyOrderDetails";
 import MyID from "./pages/MyID";
 import ProductCompare from "./pages/ProductCompare";
 import EditProfile from "./pages/EditProfile";
 import CategoryPage from "./pages/CategoryPage";
 import ShopPage from "./pages/ShopPage";
 import ShopPageFilter from "./pages/ShopPage-filter";
+import ShopPageType from "./pages/ShopPage-type";
+import Wishlist from "./pages/Wishlist";
+import RewardPage from "./pages/RewardPage";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
 import BlogAdd from "./pages/admin/BlogAdd";
+import RewardDetails from "./pages/RewardDetails";
 
 function App() {
   const navigate = useNavigate();
@@ -63,6 +69,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/my-account" element={<MyAccount />}/>
               <Route path="/my-id" element={<MyID />}/>
+              <Route path="/my-order" element={<MyOrder />}/>
+              <Route path="/my-order-details/:id" element={<MyOrderDetails />}/>
               <Route path="/my-coupon" element={<MyCoupon />}/>
               <Route path="/welcome" element={<Welcome />}/>
               <Route path="/signup" element={<Signup />}/>
@@ -75,6 +83,10 @@ function App() {
               <Route path="/categories" element={<CategoryPage />}/>
               <Route path="/shop" element={<ShopPage />}/>
               <Route path="/shop/filter" element={<ShopPageFilter />}/>
+              <Route path="/shop/type" element={<ShopPageType />}/>
+              <Route path="/wishlist" element={<Wishlist />}/>
+              <Route path="/reward" element={<RewardPage />}/>
+              <Route path="/reward-details" element={<RewardDetails />}/>
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />

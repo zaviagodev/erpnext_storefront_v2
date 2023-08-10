@@ -1,3 +1,4 @@
+import React from 'react'
 import TitleHeader from "../components/TitleHeader"
 
 const ShopPageFilter = () => {
@@ -5,7 +6,7 @@ const ShopPageFilter = () => {
     return (
       <label htmlFor={key} className='flex py-5 w-full items-center gap-x-[14px]'>
         <input type="radio" id={key} name="shop-filter" className='shop-filter-check'/>
-        <span className='shop-filter-radios'></span>
+        <span className='shop-filter-radios' />
         {text}
       </label>
     )
