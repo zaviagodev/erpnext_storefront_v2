@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { SfInput, SfButton } from '@storefront-ui/react';
 import { useFormik } from 'formik';
 import { useFrappeAuth } from 'frappe-react-sdk';
@@ -5,12 +6,26 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/useUser';
 import { getToken } from '../utils/helper';
-
+import { useFrappeGetCall } from 'frappe-react-sdk';
 
 
 export default function Login() {
     const { login } = useUser();
+    const [lineurl, setlineurl] = useState("");
     const navigate = useNavigate();
+    const { data } = useFrappeGetCall('/honda_api.api_calls.linetoken.get_oauth2_authorize_url', null, ``)
+
+    const line = async (usr, pwd) => {
+        try {
+            return fetch("https://dev.zaviago.com/api/method/honda_api.api_calls.linetoken.get_oauth2_authorize_url?"+Date.now(), {method: "GET",headers: {"Content-Type": "application/json"}}).then((response) => response.json()).then((data) => {
+                setlineurl(data.message);
+            })
+
+        } catch (error) {
+            return error;
+        }
+    }
+
     const {
         isLoading,
     } = useFrappeAuth();
@@ -19,6 +34,7 @@ export default function Login() {
         if (getToken()) {
             navigate("/");
         }
+        line();
     }, [])
 
     const formik = useFormik({
@@ -33,7 +49,7 @@ export default function Login() {
 
 
     function handleClick(e) {
-        const url = window.location.href = "https://access.line.me/oauth2/v2.1/authorize?redirect_uri=https://dev.zaviago.com/api/method/honda_api.api_calls.linehandle.login_via_line&state=eyJzaXRlIjogImh0dHA6Ly8xMjcuMC4wLjE6ODAwMCIsICJ0b2tlbiI6ICI1ZTA1ZjBiYWRhMmEwOTI4ZjUwNDJkYThiMjc3ODhkNGQzNzAzZDVlYTEzNTFhYjI5NGIyNTVmNSIsICJyZWRpcmVjdF90byI6IG51bGx9&response_type=code&scope=openid+profile+email&client_id=2000312030"
+        const url = window.location.href = lineurl
         navigate(url)
     }
 
