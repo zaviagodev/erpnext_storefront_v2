@@ -1,5 +1,5 @@
 import { ArrowLeft, MarkerPin01, AlertTriangle, FileCheck02 } from '@untitled-ui/icons-react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import TitleHeader from '../../components/TitleHeader'
@@ -7,6 +7,8 @@ import TitleHeader from '../../components/TitleHeader'
 const EditShippingAddress = () => {
   const [province, setProvince] = useState('');
   const [modified, setModified] = useState(true);
+
+  const navigate = useNavigate()
 
   const [openSuccess, setOpenSuccess] = useState(false)
   return (
