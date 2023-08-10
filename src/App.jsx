@@ -1,17 +1,16 @@
 import { FrappeProvider } from "frappe-react-sdk";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate ,useLocation} from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import './App.css'
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { ProductsProvider } from "./hooks/useProducts";
 import { CartProvider } from "./hooks/useCart";
 import Cart from "./components/Cart";
 import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile";
 import { UserProvider } from "./hooks/useUser";
-import { getToken } from "./utils/helper";
 import BankInfoPage from "./pages/BankInfoPage";
 import MyAccount from "./pages/MyAccount";
 import ShippingAddress from "./pages/address/ShippingAddress";
@@ -33,19 +32,37 @@ import ShopPageFilter from "./pages/ShopPage-filter";
 import ShopPageType from "./pages/ShopPage-type";
 import Wishlist from "./pages/Wishlist";
 import RewardPage from "./pages/RewardPage";
+import { getToken, removeToken, setToken } from './utils/helper';
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
 import BlogAdd from "./pages/admin/BlogAdd";
 import RewardDetails from "./pages/RewardDetails";
+import { useFrappeGetCall } from 'frappe-react-sdk';
 
-function App() {
+function App(ev) {
   const navigate = useNavigate();
+  const search = useLocation().search;
+  const token = new URLSearchParams(search).get("token");
+  const [user, setUser] = useState(null);
   useEffect(() => {
+
+    if(token){
+      setToken(token)
+      useFrappeGetCall('headless_e_commerce.api.get_profile', {}, 'user-profile', {
+        isOnline: () => getToken(),
+        onSuccess: (data) => {
+            setUser(data.message)
+        }
+      })
+    }
+ 
     if (!getToken()) {
       navigate("/login");
     }
   }, [navigate]);
+
+
 
   return (
     <FrappeProvider url={"https://dev.zaviago.com"}
