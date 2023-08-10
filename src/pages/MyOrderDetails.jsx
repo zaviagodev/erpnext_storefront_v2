@@ -1,12 +1,13 @@
 import { Link, useParams } from "react-router-dom"
-import { ArrowLeft, CreditCard02, ChevronRight, MarkerPin01, ShoppingBag01 } from "@untitled-ui/icons-react"
+import { ArrowLeft, CreditCard02, ChevronRight, MarkerPin01, ShoppingBag01, AnnotationDots, Share04, SwitchHorizontal01 } from "@untitled-ui/icons-react"
 import { useFrappeGetDoc, useFrappeGetDocList } from "frappe-react-sdk"
+import testImg from '../img/test-img.png'
 
 const MyOrderDetails = () => {
   const { id } = useParams()
 
   const { data, isLoading, error } = useFrappeGetDoc('Sales Invoice', id, {
-    fields: ['name', 'address', 'status', 'due_date', 'customer_address']
+    fields: ['name', 'address', 'status', 'due_date', 'customer_address', 'items']
   })
 
   return (
@@ -75,34 +76,55 @@ const MyOrderDetails = () => {
             </Link>
 
             <section className="flex gap-x-[14px] mt-[14px] pb-[18px] border-b border-b-[#E3E3E3]">
-                <div>
-                  <img src={testImg} />
+              <div>
+                <img src={testImg} />
+              </div>
+              <div className="flex w-3/4 flex-col gap-y-[6px]">
+                <div className="flex justify-between w-full">
+                  <h2 className="text-sm">Nike Air Force 1 '07</h2>
+                  <p className="text-sm">฿ 4499.00</p>
                 </div>
-                <div className="flex w-3/4 flex-col gap-y-3">
-                  <div className="flex">
-                    <h2 className="w-[40%] text-xs">คำสั่งซื้อ</h2>
-                    <p className="w-[60%] text-xs text-[#00B14F]">{d.name}</p>
-                  </div>
-                  <div className="flex">
-                    <h2 className="w-[40%] text-xs">วันที่</h2>
-                    <p className="w-[60%] text-xs">{d.posting_date}</p>
-                  </div>
-                  <div className="flex">
-                    <h2 className="w-[40%] text-xs">จัดส่งภายใน</h2>
-                    <p className="w-[60%] text-xs">3 - 4 วันทำการ<br/>Standard Delivery</p>
-                  </div>
-                  <div className="flex">
-                    <h2 className="w-[40%] text-xs">การชำระเงิน</h2>
-                    <p className="w-[60%] text-xs">โอนเงินผ่านธนาคาร</p>
-                  </div>
-                  <div className="flex">
-                    <h2 className="w-[40%] text-xs">รวมการสั่งซื้อ</h2>
-                    <p className="w-[60%] text-xs">฿ {d.total}</p>
-                  </div>
+                <div className="flex justify-between w-full">
+                  <h2 className="text-[#625C5C] text-xs">Women's Pullover Training Hoodie</h2>
+                  {/* <p className="text-sm text-[#FF5B5B]">฿ 4499.00</p> */}
                 </div>
-              </section>
+              </div>
+            </section>
+
+            <section className="flex gap-x-[14px] mt-[14px] pb-[18px] border-b border-b-[#E3E3E3]">
+              <div>
+                <img src={testImg} />
+              </div>
+              <div className="flex w-3/4 flex-col gap-y-[6px]">
+                <div className="flex justify-between w-full">
+                  <h2 className="text-sm">Nike Air Force 1 '07</h2>
+                  <p className="text-sm text-[#AFAFAF] line-through">฿ 4499.00</p>
+                </div>
+                <div className="flex justify-between w-full">
+                  <h2 className="text-[#625C5C] text-xs w-[60%]">Women's Pullover Training Hoodie</h2>
+                  <p className="text-sm text-[#FF5B5B]">฿ 4499.00</p>
+                </div>
+              </div>
+            </section>
           </>
         )}
+
+        <div className='flex mb-[22px] py-[18px]'>
+          <button className='text-xs text-[#5B6CFF] w-1/3 text-center flex justify-center gap-x-[6px] items-center'>
+            <AnnotationDots viewBox='0 0 24 24' width="18" height="18"/>
+            ติดต่อเรา
+          </button>
+          <button className='text-xs text-[#5B6CFF] w-1/3 text-center flex justify-center gap-x-[6px] items-center'>
+            <Share04 viewBox='0 0 24 24' width="18" height="18"/>
+            แชร์สินค้า
+          </button>
+          <button className='text-xs text-[#5B6CFF] w-1/3 text-center flex justify-center gap-x-[6px] items-center'>
+            <SwitchHorizontal01 viewBox='0 0 24 24' width="18" height="18"/>
+            เปรียบเทียบสินค้า
+          </button>
+        </div>
+
+        <Link to="" className='w-full block bg-white border border-[#111111] text-[#111111] rounded-[9px] p-3 text-center font-bold'>เปลี่ยนช่องทางการชำระเงิน</Link>
       </main>
     </>
   )
