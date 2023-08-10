@@ -219,7 +219,7 @@ const MyAccount = () => {
               <Heart color='#333333'/>
               รายการสินค้า<br/>ที่ถูกใจ
             </Link>
-            <Link to="#" className='basis-1/3 text-sm flex flex-col items-center text-center'>
+            <Link to="/my-order" className='basis-1/3 text-sm flex flex-col items-center text-center'>
               <File06 color='#333333'/>
               คำสั่งซื้อ<br/>ของฉัน
             </Link>

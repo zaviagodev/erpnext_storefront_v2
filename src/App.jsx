@@ -22,6 +22,7 @@ import Signup from "./pages/register/Signup";
 import FillInfo from "./pages/register/FillInfo";
 import Success from "./pages/register/Success";
 import MyCoupon from "./pages/MyCoupon";
+import MyOrder from "./pages/MyOrder";
 import MyID from "./pages/MyID";
 import ProductCompare from "./pages/ProductCompare";
 import EditProfile from "./pages/EditProfile";
@@ -66,6 +67,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/my-account" element={<MyAccount />}/>
               <Route path="/my-id" element={<MyID />}/>
+              <Route path="/my-order" element={<MyOrder />}/>
               <Route path="/my-coupon" element={<MyCoupon />}/>
               <Route path="/welcome" element={<Welcome />}/>
               <Route path="/signup" element={<Signup />}/>

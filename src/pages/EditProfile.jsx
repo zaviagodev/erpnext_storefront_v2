@@ -19,6 +19,7 @@ const EditProfile = () => {
   const [filledAllOtp, setFilledAllOtp] = useState('')
   const [phoneError, setPhoneError] = useState(false);
   const [otperror, setOtperror] = useState(false)
+  const [modifiedInfo, setModifiedInfo] = useState(true)
 
   const telRef = useRef(null)
 
@@ -71,6 +72,16 @@ const EditProfile = () => {
                 <label htmlFor='email'>อีเมล</label>
                 <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='email' name='email' type='email'/>
               </div>
+
+              <div className='flex flex-col'>
+                <label htmlFor='id-card-number'>เลขบัตรประจำตัวประชาชน</label>
+                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='id-card-number' name='id-card-number' type='text'/>
+              </div>
+
+              <div className='flex flex-col'>
+                <label htmlFor='birthdate'>วัน/เดือน/ปีเกิด</label>
+                <input type="date" className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='birthdate' name='birthdate'/>
+              </div>
     
               <div className='flex flex-col relative'>
                 <label htmlFor='phone'>เบอร์โทร</label>
@@ -78,6 +89,8 @@ const EditProfile = () => {
 
                 <button className="absolute translate-y-[38px] right-[4px] bg-black text-white px-3 py-[6px] rounded-[6px]" onClick={changeToChangePhone}>แก้ไข</button>
               </div>
+
+              <button className={`w-full text-white rounded-[9px] p-3 mt-[10px] text-center ${!modifiedInfo ? "bg-[#C5C5C5] border border-[#C5C5C5]" : "bg-[#111111] border border-[#111111]"}`} disabled={!modifiedInfo}>บันทึกข้อมูล</button>
             </form>
           </main>
           <footer className="p-5 w-full">

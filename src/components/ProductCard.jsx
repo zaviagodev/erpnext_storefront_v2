@@ -18,7 +18,7 @@ const ProductCard = ({
                 <div className="relative">
                     <SfLink href="#" className="block">
                       <img
-                        src={thumbnail}
+                        src={`https://dev.zaviago.com${thumbnail}`}
                         alt={title}
                         className="object-cover h-auto rounded-md aspect-square"
                         width="300"
