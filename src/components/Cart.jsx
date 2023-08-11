@@ -152,7 +152,7 @@ const Cart = () => {
                         </div>
                       </div>
 
-                      <div className="px-4 py-6 fixed bottom-0 w-full bg-white">
+                      <div className="px-4 py-6 bottom-0 w-full bg-white">
                         <div className='border-y border-y-[#E3E3E3] py-4'>
                           <label htmlFor='coupon-pro'>โปรโมชั่นและส่วนลด</label>
                           <div className='flex gap-x-5 mt-4'>
