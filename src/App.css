@@ -140,6 +140,12 @@
   border:2px solid white;
 }
 
+.theMainBannerReardHome{
+  background-image: url('./img/mainBannerRewardHome.png');
+  width: 354px;
+  height: 209px;
+}
+
 @keyframes borderAnim {
   from {
     width:0;
