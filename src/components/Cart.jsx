@@ -53,7 +53,7 @@ const Cart = () => {
                 placement='right'
                 open
                 onClose={() => setIsOpen(false)}
-                className="bg-neutral-50 w-full z-[999]"
+                className="bg-neutral-50 w-full z-[999] overflow-y-auto"
             >
                 {cartPage && (
                   <>
@@ -81,7 +81,7 @@ const Cart = () => {
 
                         <div className="mt-8">
                             <div className="flow-root">
-                                <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                <ul role="list" className="-my-6 divide-y divide-gray-200 overflow-y-auto">
                                     {
                                         Object.entries(cart).map(([itemCode, qty]) => {
                                             const product = getByItemCode(itemCode)
@@ -152,8 +152,8 @@ const Cart = () => {
                         </div>
                       </div>
 
-                      <div className="px-4 py-6 absolute bottom-0 w-full">
-                        <div className='border-y border-y-[#E3E3E3] mt-10 py-4'>
+                      <div className="px-4 py-6 fixed bottom-0 w-full bg-white">
+                        <div className='border-y border-y-[#E3E3E3] py-4'>
                           <label htmlFor='coupon-pro'>โปรโมชั่นและส่วนลด</label>
                           <div className='flex gap-x-5 mt-4'>
                             <input type="text" id="coupon-pro" name="coupon-pro" placeholder="โปรดใส่โค้ดส่วนลด" className="border-b border-b-[#141414] w-full outline-none" autoComplete="off" onClick={(e) => e.target.focus()}/>
