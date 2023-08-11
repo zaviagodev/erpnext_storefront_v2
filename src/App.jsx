@@ -37,6 +37,7 @@ import BlogCategories from "./pages/admin/BlogCategories";
 import BlogAdd from "./pages/admin/BlogAdd";
 import RewardDetails from "./pages/RewardDetails";
 import RewardCouponPage from "./pages/RewardCouponPage";
+import RewardHomePage from "./pages/RewardHomePage";
 
 function App() {
   const navigate = useNavigate();
@@ -85,6 +86,7 @@ function App() {
               <Route path="/reward" element={<RewardPage />}/>
               <Route path="/reward-details" element={<RewardDetails />}/>
               <Route path="/reward-coupon" element={<RewardCouponPage />}/>
+              <Route path="/reward-home" element={<RewardHomePage />}/>
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />
