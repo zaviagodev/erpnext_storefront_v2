@@ -33,7 +33,7 @@ import ShopPageType from "./pages/ShopPage-type";
 import Wishlist from "./pages/Wishlist";
 import RewardPage from "./pages/RewardPage";
 import { getToken, removeToken, setToken } from './utils/helper';
-
+import Gifts from "./pages/Gifts";
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
 import BlogAdd from "./pages/admin/BlogAdd";
@@ -104,6 +104,10 @@ function App(ev) {
               <Route path="/wishlist" element={<Wishlist />}/>
               <Route path="/reward" element={<RewardPage />}/>
               <Route path="/reward-details" element={<RewardDetails />}/>
+              <Route path="/reward-coupon" element={<RewardCouponPage />}/>
+              <Route path="/reward-home" element={<RewardHomePage />}/>
+              <Route path="/gifts" element={<Gifts />}/>
+
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />
