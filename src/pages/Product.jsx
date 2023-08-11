@@ -172,7 +172,7 @@ const Product = () => {
                 </div>
                 <div className="flex justify-center h-full basis-full shrink-0 grow snap-center">
                   <img
-                    src={product?.website_image}
+                    src={`https://dev.zaviago.com${product?.website_image}`}
                     className="object-contain w-auto h-full"
                     aria-label={product?.website_image}
                     alt={product?.website_image}

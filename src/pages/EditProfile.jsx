@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useEffect,useState, useRef } from "react"
 import TitleHeader from "../components/TitleHeader"
 import fblogo from '../img/fb-logo.svg'
 import googlelogo from '../img/google-logo.svg'
@@ -6,8 +6,15 @@ import applelogo from '../img/apple-logo.svg'
 import { ArrowLeft } from '@untitled-ui/icons-react'
 import successIcon from '../img/success.svg'
 import { Link } from "react-router-dom"
+import { useUser } from '../hooks/useUser';
+
 
 const EditProfile = () => {
+  
+  const { user } = useUser()
+  console.log(user)
+ 
+  
   const [editPro, setEditPro] = useState(true)
   const [changePhone, setChangePhone] = useState(false)
   const [changedSuccessfully, setChangedSuccessfully] = useState(false);
@@ -19,6 +26,8 @@ const EditProfile = () => {
   const [filledAllOtp, setFilledAllOtp] = useState('')
   const [phoneError, setPhoneError] = useState(false);
   const [otperror, setOtperror] = useState(false)
+    
+   
 
   const telRef = useRef(null)
 
@@ -50,6 +59,7 @@ const EditProfile = () => {
     setConfirmOTP(false);
     setChangedSuccessfully(true);
   }
+   
   return (
     <>
       {editPro && (
@@ -58,23 +68,26 @@ const EditProfile = () => {
           <main className='p-5'>
             <form action="#" className='flex flex-col gap-y-5'>
               <div className='flex flex-col'>
-                <label htmlFor='name'>ชื่อ</label>
-                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='name' name='name' type='text' />
+             
+                <label htmlFor='name'>ชื่อ</label> 
+                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='name' name='name' type='text' defaultValue={ user?.name ? user.name : "" } />
               </div>
     
               <div className='flex flex-col'>
                 <label htmlFor='surname'>นามสกุล</label>
-                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='surname' name='surname' type='text'/>
+                <input  className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='surname' name='surname' type='text' defaultValue={ user?.middle_name ? user.middle_name : "" } />
               </div>
     
               <div className='flex flex-col'>
                 <label htmlFor='email'>อีเมล</label>
-                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='email' name='email' type='email'/>
+                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='email' name='email' type='email' defaultValue={ user?.email_id
+ ? user.email_id
+ : "" } />
               </div>
     
               <div className='flex flex-col relative'>
                 <label htmlFor='phone'>เบอร์โทร</label>
-                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='phone' name='phone' type='tel'/>
+                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='phone' name='phone' type='tel' defaultValue={ user?.mobile_no ? user.mobile_no : "" } />
 
                 <button className="absolute translate-y-[38px] right-[4px] bg-black text-white px-3 py-[6px] rounded-[6px]" onClick={changeToChangePhone}>แก้ไข</button>
               </div>
@@ -83,6 +96,9 @@ const EditProfile = () => {
           <footer className="p-5 w-full">
             <h2>เชื่อมต่อบัญชีที่เข้าสู่ระบบ</h2>
             <div>
+              <button className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full bg-[#1877F2] flex items-center justify-center gap-x-4 inter`}>
+                Save
+              </button>
               <button className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full bg-[#1877F2] flex items-center justify-center gap-x-4 inter`}>
                 <img src={fblogo} />
                 Sign In with Facebook

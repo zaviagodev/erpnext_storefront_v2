@@ -22,6 +22,8 @@ import Signup from "./pages/register/Signup";
 import FillInfo from "./pages/register/FillInfo";
 import Success from "./pages/register/Success";
 import MyCoupon from "./pages/MyCoupon";
+import MyOrder from "./pages/MyOrder";
+import MyOrderDetails from "./pages/MyOrderDetails";
 import MyID from "./pages/MyID";
 import ProductCompare from "./pages/ProductCompare";
 import EditProfile from "./pages/EditProfile";
@@ -31,6 +33,7 @@ import ShopPageFilter from "./pages/ShopPage-filter";
 import ShopPageType from "./pages/ShopPage-type";
 import Wishlist from "./pages/Wishlist";
 import RewardPage from "./pages/RewardPage";
+import Gifts from "./pages/Gifts";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -69,6 +72,8 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/my-account" element={<MyAccount />}/>
               <Route path="/my-id" element={<MyID />}/>
+              <Route path="/my-order" element={<MyOrder />}/>
+              <Route path="/my-order-details/:id" element={<MyOrderDetails />}/>
               <Route path="/my-coupon" element={<MyCoupon />}/>
               <Route path="/welcome" element={<Welcome />}/>
               <Route path="/signup" element={<Signup />}/>
@@ -87,6 +92,8 @@ function App() {
               <Route path="/reward-details" element={<RewardDetails />}/>
               <Route path="/reward-coupon" element={<RewardCouponPage />}/>
               <Route path="/reward-home" element={<RewardHomePage />}/>
+              <Route path="/gifts" element={<Gifts />}/>
+
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />

@@ -53,7 +53,7 @@ const Cart = () => {
                 placement='right'
                 open
                 onClose={() => setIsOpen(false)}
-                className="bg-neutral-50 w-full z-[999]"
+                className="bg-neutral-50 w-full z-[999] overflow-y-auto"
             >
                 {cartPage && (
                   <>
@@ -67,7 +67,7 @@ const Cart = () => {
                     <header className='bg-black text-white text-center py-[10px]'>
                       กดรับของขวัญฟรี 🎁
                     </header>
-                    <div className="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
+                    <div className="flex flex-col bg-white shadow-xl" style={{height:"calc(100% - 429px)"}}>
                       <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                         {/* <div className="flex items-start justify-between">
                             <div className="ml-3 flex h-7 items-center">
@@ -81,7 +81,7 @@ const Cart = () => {
 
                         <div className="mt-8">
                             <div className="flow-root">
-                                <ul role="list" className="-my-6 divide-y divide-gray-200">
+                                <ul role="list" className="-my-6 divide-y divide-gray-200 overflow-y-auto">
                                     {
                                         Object.entries(cart).map(([itemCode, qty]) => {
                                             const product = getByItemCode(itemCode)
@@ -151,29 +151,29 @@ const Cart = () => {
                             </div>
                         </div>
                       </div>
+                    </div>
 
-                      <div className="px-4 py-6 absolute bottom-0 w-full">
-                        <div className='border-y border-y-[#E3E3E3] mt-10 py-4'>
-                          <label htmlFor='coupon-pro'>โปรโมชั่นและส่วนลด</label>
-                          <div className='flex gap-x-5 mt-4'>
-                            <input type="text" id="coupon-pro" name="coupon-pro" placeholder="โปรดใส่โค้ดส่วนลด" className="border-b border-b-[#141414] w-full outline-none" autoComplete="off" onClick={(e) => e.target.focus()}/>
-                            <button className='border-[2px] border-black p-2 rounded-md w-[68px] text-sm'>ใช้โค้ด</button>
-                          </div>
-                          <button className='flex gap-x-2 text-[#5B6CFF] mt-5 text-sm'>
-                            <Ticket02 />
-                            ใช้คูปองที่คุณเก็บไว้
-                          </button>
+                    <div className="px-4 py-6 fixed bottom-0 w-full bg-white">
+                      <div className='border-y border-y-[#E3E3E3] py-4'>
+                        <label htmlFor='coupon-pro'>โปรโมชั่นและส่วนลด</label>
+                        <div className='flex gap-x-5 mt-4'>
+                          <input type="text" id="coupon-pro" name="coupon-pro" placeholder="โปรดใส่โค้ดส่วนลด" className="border-b border-b-[#141414] w-full outline-none" autoComplete="off" onClick={(e) => e.target.focus()}/>
+                          <button className='border-[2px] border-black p-2 rounded-md w-[68px] text-sm'>ใช้โค้ด</button>
                         </div>
-                        <div className='mt-4'>
-                          <h2>รายละเอียดการชำระเงิน</h2>
-                          <div className="flex justify-between text-base font-medium text-gray-900">
-                            <p>ยอดรวม</p>
-                            <p>฿ {getTotal()}</p>
-                          </div>
-                          <SfButton className="w-full mt-[22px]" style={{backgroundColor:cartCount == 0 ? "#C5C5C5" : "black",color:"white"}} disabled={cartCount == 0} onClick={goToSelectShipping}>
-                            ดำเนินการสั่งซื้อสินค้า
-                          </SfButton>
+                        <button className='flex gap-x-2 text-[#5B6CFF] mt-5 text-sm'>
+                          <Ticket02 />
+                          ใช้คูปองที่คุณเก็บไว้
+                        </button>
+                      </div>
+                      <div className='mt-4'>
+                        <h2>รายละเอียดการชำระเงิน</h2>
+                        <div className="flex justify-between text-base font-medium text-gray-900">
+                          <p>ยอดรวม</p>
+                          <p>฿ {getTotal()}</p>
                         </div>
+                        <SfButton className="w-full mt-[22px]" style={{backgroundColor:cartCount == 0 ? "#C5C5C5" : "black",color:"white"}} disabled={cartCount == 0} onClick={goToSelectShipping}>
+                          ดำเนินการสั่งซื้อสินค้า
+                        </SfButton>
                       </div>
                     </div>
                   </>
