@@ -104,8 +104,6 @@ function App(ev) {
               <Route path="/wishlist" element={<Wishlist />}/>
               <Route path="/reward" element={<RewardPage />}/>
               <Route path="/reward-details" element={<RewardDetails />}/>
-              <Route path="/reward-coupon" element={<RewardCouponPage />}/>
-              <Route path="/reward-home" element={<RewardHomePage />}/>
               <Route path="/gifts" element={<Gifts />}/>
 
 
