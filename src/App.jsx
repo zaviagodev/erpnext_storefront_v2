@@ -49,12 +49,7 @@ function App(ev) {
 
     if(token){
       setToken(token)
-      useFrappeGetCall('headless_e_commerce.api.get_profile', {}, 'user-profile', {
-        isOnline: () => getToken(),
-        onSuccess: (data) => {
-            setUser(data.message)
-        }
-      })
+      navigate("/");
     }
  
     if (!getToken()) {
