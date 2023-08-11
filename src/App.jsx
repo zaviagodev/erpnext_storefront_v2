@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import { UserProvider } from "./hooks/useUser";
 import BankInfoPage from "./pages/BankInfoPage";
 import MyAccount from "./pages/MyAccount";
+import Phonverify from "./pages/Phoneverifcation";
 import ShippingAddress from "./pages/address/ShippingAddress";
 import AddShippingAddress from "./pages/address/ShippingAddressAdd";
 import EditShippingAddress from "./pages/address/ShippingAddressEdit";
@@ -100,8 +101,7 @@ function App(ev) {
               <Route path="/reward" element={<RewardPage />}/>
               <Route path="/reward-details" element={<RewardDetails />}/>
               <Route path="/gifts" element={<Gifts />}/>
-
-
+              <Route path="/phonverify" element={<Phonverify />}/>
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />
               <Route path="/blog-add" element={<BlogAdd />} />
