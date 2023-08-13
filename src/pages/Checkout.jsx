@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { SfCheckbox, SfButton, SfIconCheckCircle, SfIconClose, SfLink } from '@storefront-ui/react';
+import { useState, useEffect, useMemo } from 'react';
+import { SfCheckbox, SfButton, SfIconCheckCircle, SfIconClose, SfLink, SfInput } from '@storefront-ui/react';
 import { useCart } from '../hooks/useCart';
 import PaymentMethods from '../components/PaymentMethods';
 import AddressCard from '../components/AddressCard';
@@ -7,22 +7,48 @@ import { useFrappeGetCall, useFrappePostCall } from 'frappe-react-sdk';
 import { useFormik } from 'formik';
 import { orderSchema } from '../components/forms/orderSchema';
 import { useNavigate } from 'react-router-dom';
+import { useProducts } from '../hooks/useProducts';
+import BranchSelect from '../components/form-controls/BranchSelect';
+import { useUser } from '../hooks/useUser';
 
 
 const Checkout = () => {
+    const { user } = useUser()
+    const { getByItemCode } = useProducts()
     const { cart, cartCount, getTotal, resetCart } = useCart();
     const navigate = useNavigate();
 
-    const { call, isCompleted, result } = useFrappePostCall('headless_e_commerce.api.place_order');
+    const cartContents = useMemo(() => {
+        return Object.entries(cart).reduce((acc, [item_code]) => {
+            const product = getByItemCode(item_code);
+            if (product?.item_group === 'Gift' || product?.item_group === 'Gift and Cards') {
+                return {
+                    ...acc,
+                    hasGiftItem: true,
+                }
+            }
+            return {
+                ...acc,
+                hasNormalItem: true,
+            }
+        }, {
+            hasNormalItem: false,
+            hasGiftItem: false,
+        })
+    }, [cart, getByItemCode])
+
+    const { call, isCompleted, result, error } = useFrappePostCall('headless_e_commerce.api.place_order');
 
     const formik = useFormik({
         initialValues: {
+            cartContents,
             billing_address: '',
             shipping_address: '',
             use_different_shipping: false,
             loyalty_points: '',
             items: cart,
             payment_method: 'bank-transfer',
+            branch: '',
         },
         validationSchema: orderSchema,
         validateOnChange: false,
@@ -31,7 +57,8 @@ const Checkout = () => {
 
     useEffect(() => {
         formik.setFieldValue('items', Object.entries(cart).map(([item_code, qty]) => ({ item_code, qty })))
-    }, [cartCount])
+        formik.setFieldValue('cartContents', cartContents)
+    }, [cartCount, cartContents])
 
     useEffect(() => {
         if (isCompleted) {
@@ -40,7 +67,10 @@ const Checkout = () => {
                 navigate(`/thankyou?order_id=${result.message.name}&amount=${result.message.grand_total}`)
             }
         }
-    }, [isCompleted])
+        if (error) {
+            setErrorAlert(JSON.parse(JSON.parse(error?._server_messages)[0]).message);
+        }
+    }, [isCompleted, error])
 
 
     const [informationAlert, setInformationAlert] = useState(false);
@@ -51,28 +81,50 @@ const Checkout = () => {
     return (
         <div className='flex flex-col md:flex-row gap-8 justify-center'>
             <form className="p-4 md:w-3/5 flex gap-4 flex-wrap text-neutral-900">
-                <AddressOptions
-                    onChange={value => formik.setFieldValue('billing_address', value)}
-                    value={formik.values.billing_address}
-                    error={formik.errors.billing_address}
-                />
-                <label className="w-full flex items-center gap-2">
-                    <SfCheckbox
-                        name="use_different_shipping"
-                        onChange={formik.handleChange}
-                        checked={formik.values.use_different_shipping} />
-                    Use different shipping address
-                </label>
                 {
-                    formik.values.use_different_shipping && (
-                        <AddressOptions
-                            onChange={value => formik.setFieldValue('shipping_address', value)}
-                            value={formik.values.shipping_address}
-                            error={formik.errors.shipping_address}
-                        />
+                    cartContents.hasNormalItem && (
+                        <>
+                            <label className="w-full">
+                                <legend className="mb-4 font-bold text-neutral-900">Address</legend>
+                                <AddressOptions
+                                    onChange={value => formik.setFieldValue('billing_address', value)}
+                                    value={formik.values.billing_address}
+                                    error={formik.errors.billing_address}
+                                />
+                            </label>
+                            <label className="w-full flex items-center gap-2">
+                                <SfCheckbox
+                                    name="use_different_shipping"
+                                    onChange={formik.handleChange}
+                                    checked={formik.values.use_different_shipping} />
+                                Use different shipping address
+                            </label>
+                            {
+                                formik.values.use_different_shipping && (
+                                    <AddressOptions
+                                        onChange={value => formik.setFieldValue('shipping_address', value)}
+                                        value={formik.values.shipping_address}
+                                        error={formik.errors.shipping_address}
+                                    />
+                                )
+                            }
+                            <PaymentMethods onChange={value => formik.setFieldValue('payment_method', value)} value={formik.values.payment_method} error={formik.errors.payment_method} />
+                        </>
                     )
                 }
-                <PaymentMethods onChange={value => formik.setFieldValue('payment_method', value)} value={formik.values.payment_method} error={formik.errors.payment_method} />
+                {
+                    cartContents.hasGiftItem && (
+                        <label className="w-full">
+                            <span className="pb-1 text-sm font-medium text-neutral-900 font-body">Select Branch for Redemption</span>
+                            <BranchSelect
+                                name="branch"
+                                onChange={formik.handleChange}
+                                value={formik.values.branch}
+                                error={formik.errors.branch}
+                            />
+                        </label>
+                    )
+                }
             </form>
             <div className='p-4 md:w-2/5'>
                 <div className="md:shadow-lg md:rounded-md md:border md:border-neutral-100">
@@ -121,7 +173,16 @@ const Checkout = () => {
                             <p>Total</p>
                             <p>฿ {getTotal()}</p>
                         </div>
-                        <SfButton size="lg" className="w-full" onClick={formik.handleSubmit}>
+
+                        <SfInput
+                            placeholder='Enter loyalty points to redeem'
+                            slotSuffix={<strong className='w-16'>of {user?.loyalty_points}</strong>}
+                            maxLength={user?.loyalty_points?.toString().length}
+                            name="loyalty_points"
+                            value={formik.values.loyalty_points}
+                            onChange={formik.handleChange}
+                        />
+                        <SfButton size="lg" className="w-full mt-4" onClick={formik.handleSubmit}>
                             Place Order
                         </SfButton>
                         <div className="typography-text-sm mt-4 text-center">
@@ -172,7 +233,7 @@ const Checkout = () => {
                             role="alert"
                             className="flex items-start md:items-center max-w-[600px] shadow-md bg-negative-100 pr-2 pl-4 ring-1 ring-negative-300 typography-text-sm md:typography-text-base py-1 rounded-md"
                         >
-                            <p className="py-2 mr-2">This promo code is not valid.</p>
+                            <p className="py-2 mr-2">{errorAlert}</p>
                             <button
                                 type="button"
                                 className="p-1.5 md:p-2 ml-auto rounded-md text-negative-700 hover:bg-negative-200 active:bg-negative-300 hover:text-negative-800 active:text-negative-900"

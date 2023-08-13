@@ -10,6 +10,7 @@ const ProductCard = ({
     price,
     productId,
     itemCode,
+    isGift
 }) => {
     const { addToCart } = useCart()
     return (
@@ -38,7 +39,7 @@ const ProductCard = ({
                 </div>
                 <div className="p-4 border-t border-neutral-200">
                     <SfLink href="#" variant="secondary" className="no-underline">
-                        {title}
+                        {title} {isGift && <span className="text-primary-600">- Gift</span>}
                     </SfLink>
                     <div className="flex items-center pt-1">
                         <SfRating size="xs" value={5} max={5} />

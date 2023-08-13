@@ -21,8 +21,10 @@ export default function Login() {
 
     const formik = useFormik({
         initialValues: {
-            usr: 'umer2001.uf@gmail.com',
-            pwd: 'admintoor',
+            // usr: 'umer2001.uf@gmail.com',
+            // pwd: 'admintoor',
+            usr: 'suttirak.ch@zaviago.com',
+            pwd: 'CanDoNa12a3',
         },
         onSubmit: values => login(values.usr, values.pwd).then(() => navigate("/"))
     });
