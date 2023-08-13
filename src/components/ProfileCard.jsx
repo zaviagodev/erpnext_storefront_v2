@@ -25,7 +25,7 @@ const ProfileCard = ({
                     <p className="font-medium typography-text-base">{user?.name}</p>
                     <p className="mt-1 font-normal typography-text-sm text-neutral-700"><SfIconEmail size='sm' /> {currentUser}</p>
                     {user?.mobile_no && <p className="font-normal typography-text-sm text-neutral-700"><SfIconCall size='sm' /> {user.mobile_no}</p>}
-                    <p className="font-normal typography-text-sm text-neutral-700"><SfIconStar size='sm' /> {user?.loyalty_program_tier} ({loyaltyPoints})</p>
+                    <p className="font-normal typography-text-sm text-neutral-700"><SfIconStar size='sm' /> {user?.loyalty_program_tier} ({user?.loyalty_points})</p>
                 </div>
                 <SfButton className="absolute bottom-0 right-0 m-3" onClick={logout}>Logout</SfButton>
             </div>
