@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import { UserProvider } from "./hooks/useUser";
 import { getToken } from "./utils/helper";
 import BankInfoPage from "./pages/BankInfoPage";
+import LoyaltyProgram from "./pages/LoyaltyProgram";
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
   }, [navigate]);
 
   return (
-    <FrappeProvider url={"https://umer2002.aca.fc.zaviago.com"}
+    <FrappeProvider url={import.meta.env.VITE_ERP_URL}
       enableSocket={false}
       tokenParams={{
         type: "token",
@@ -41,6 +42,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="products/:id" element={<Product />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/loyality-program" element={<LoyaltyProgram />} />
               <Route path="/thankyou" element={<BankInfoPage />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />

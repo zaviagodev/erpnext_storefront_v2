@@ -2,6 +2,7 @@ import React from 'react'
 import { SfButton, SfIconEmail, SfIconCall, SfIconStar } from '@storefront-ui/react';
 import { useUser } from '../hooks/useUser';
 import { useFrappeAuth } from 'frappe-react-sdk';
+import { Link } from 'react-router-dom';
 
 const ProfileCard = ({
     title = "Selena Gomez",
@@ -25,7 +26,7 @@ const ProfileCard = ({
                     <p className="font-medium typography-text-base">{user?.name}</p>
                     <p className="mt-1 font-normal typography-text-sm text-neutral-700"><SfIconEmail size='sm' /> {currentUser}</p>
                     {user?.mobile_no && <p className="font-normal typography-text-sm text-neutral-700"><SfIconCall size='sm' /> {user.mobile_no}</p>}
-                    <p className="font-normal typography-text-sm text-neutral-700"><SfIconStar size='sm' /> {user?.loyalty_program_tier} ({user?.loyalty_points})</p>
+                    <p className="font-normal typography-text-sm text-neutral-700"><SfIconStar size='sm' />{user?.loyalty_program_tier} (<Link className='text-blue-500' to="/loyality-program">{user?.loyalty_points}</Link>)</p>
                 </div>
                 <SfButton className="absolute bottom-0 right-0 m-3" onClick={logout}>Logout</SfButton>
             </div>
