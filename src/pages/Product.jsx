@@ -261,7 +261,7 @@ const Product = () => {
                       </div> */}
                     </div>
                 </div>
-                <div dangerouslySetInnerHTML={{ __html: product?.web_long_description }} />
+                <div dangerouslySetInnerHTML={{ __html: product?.web_long_description }} className='text-[#424242] font-normal text-xs leading-[18px] break-all mt-5' />
             </section>
 
             <Accordion items={items} />
