@@ -1,5 +1,3 @@
-import { useEffect } from "react"
-
 const Skeleton = ({
   width="40px", 
   height="40px", 
@@ -23,10 +21,6 @@ const Skeleton = ({
     marginLeft:marginLeft,
     marginRight:marginRight
   }
-
-  useEffect(() => {
-
-  })
 
   return (
     <div className="skeleton" style={skeletonStyle}/>
