@@ -1,5 +1,5 @@
 import { FrappeProvider } from "frappe-react-sdk";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
@@ -33,12 +33,14 @@ import ShopPageFilter from "./pages/ShopPage-filter";
 import ShopPageType from "./pages/ShopPage-type";
 import Wishlist from "./pages/Wishlist";
 import RewardPage from "./pages/RewardPage";
+import CollectPoints from "./pages/CollectPoints";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
 import BlogAdd from "./pages/admin/BlogAdd";
 import RewardDetails from "./pages/RewardDetails";
 import RewardCouponPage from "./pages/RewardCouponPage";
+import ProductReward from "./pages/ProductReward";
 
 function App() {
   const navigate = useNavigate();
@@ -47,6 +49,8 @@ function App() {
       navigate("/login");
     }
   }, [navigate]);
+
+  const location = useLocation();
 
   return (
     <FrappeProvider url={"https://dev.zaviago.com"}
@@ -60,11 +64,13 @@ function App() {
       <UserProvider>
         <ProductsProvider>
           <CartProvider>
-            <Routes>
+            <Routes key={location.pathname} location={location}>
               <Route path="/" element={<Home />} />
               <Route path="products/:id" element={<Product />} />
+              <Route path="product-reward/:id" element={<ProductReward />} />
               <Route path="product-compare/:id" element={<ProductCompare />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/collect-points" element={<CollectPoints />} />
               <Route path="/thankyou" element={<BankInfoPage />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />

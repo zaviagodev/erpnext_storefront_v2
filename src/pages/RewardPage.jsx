@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { ChevronRight } from "@untitled-ui/icons-react";
 import silverCard from '../img/silvercard-reward.svg'
 import coin from '../img/coin2.svg'
+import iconRightHead from '../img/iconRightHead.svg'
+import bookClosed from "../img/book-closed.svg"
 
 const RewardPage = () => {
   const { currentUser, updateCurrentUser } = useFrappeAuth();
@@ -61,6 +63,17 @@ const RewardPage = () => {
           </div>
         </div>
       </header>
+      <Link to='/collect-points' state={{ url: "/" }} className='font-normal font-sm leading-[20px] text-white'>
+        <div className='flex justify-between items-center my-[32px] mx-5 p-5 h-[54px] rounded-lg bg-[#00B14F]' style={{width:"calc(100% - 40px)"}}>
+          <div className='flex items-center gap-x-2'>
+            <img className='w-[17px] h-[17px]' src={bookClosed} alt="" />
+            วิธีเก็บคะแนน
+          </div>
+          <div>
+            <img src={iconRightHead} className='w-[6px] h-[10px]' alt="" />
+          </div>
+        </div>
+      </Link>
       <FooterMenu active={2}/>
     </>
   )
