@@ -1,20 +1,16 @@
-import React, { useEffect,useState, useRef } from "react"
+import React, { useState, useRef } from "react"
 import TitleHeader from "../components/TitleHeader"
-import fblogo from '../img/fb-logo.svg'
-import googlelogo from '../img/google-logo.svg'
-import applelogo from '../img/apple-logo.svg'
 import { ArrowLeft } from '@untitled-ui/icons-react'
 import successIcon from '../img/success.svg'
 import { Link } from "react-router-dom"
 import { useUser } from '../hooks/useUser';
-
+import { useFrappePostCall } from "frappe-react-sdk"
+import { useFormik } from "formik"
 
 const EditProfile = () => {
-  
   const { user } = useUser()
-  console.log(user)
- 
-  
+  const { call } = useFrappePostCall("honda_api.api.update_profile")
+
   const [editPro, setEditPro] = useState(true)
   const [changePhone, setChangePhone] = useState(false)
   const [changedSuccessfully, setChangedSuccessfully] = useState(false);
@@ -26,8 +22,6 @@ const EditProfile = () => {
   const [filledAllOtp, setFilledAllOtp] = useState('')
   const [phoneError, setPhoneError] = useState(false);
   const [otperror, setOtperror] = useState(false)
-    
-   
 
   const telRef = useRef(null)
 
@@ -37,6 +31,7 @@ const EditProfile = () => {
   const num4Ref = useRef(null)
   const num5Ref = useRef(null)
   const num6Ref = useRef(null)
+
 
   const changeToEditPro = () => {
     setChangePhone(false);
@@ -59,89 +54,57 @@ const EditProfile = () => {
     setConfirmOTP(false);
     setChangedSuccessfully(true);
   }
-   
+
+  if (!user) {
+    return <div>Loading...</div>
+  }
+
   return (
     <>
       {editPro && (
         <>
-          <TitleHeader title="แก้ไขโปรไฟล์" link="/my-account"/>
+          <TitleHeader title="แก้ไขโปรไฟล์" link="/my-account" />
           <main className='p-5'>
-            <form action="#" className='flex flex-col gap-y-5'>
-              <div className='flex flex-col'>
-             
-                <label htmlFor='name'>ชื่อ</label> 
-                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='name' name='name' type='text' defaultValue={ user?.name ? user.name : "" } />
-              </div>
-    
-              <div className='flex flex-col'>
-                <label htmlFor='surname'>นามสกุล</label>
-                <input  className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='surname' name='surname' type='text' defaultValue={ user?.middle_name ? user.middle_name : "" } />
-              </div>
-    
-              <div className='flex flex-col'>
-                <label htmlFor='email'>อีเมล</label>
-                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='email' name='email' type='email' defaultValue={ user?.email_id
- ? user.email_id
- : "" } />
-              </div>
-    
-              <div className='flex flex-col relative'>
-                <label htmlFor='phone'>เบอร์โทร</label>
-                <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='phone' name='phone' type='tel' defaultValue={ user?.mobile_no ? user.mobile_no : "" } />
-
-                <button className="absolute translate-y-[38px] right-[4px] bg-black text-white px-3 py-[6px] rounded-[6px]" onClick={changeToChangePhone}>แก้ไข</button>
-              </div>
-            </form>
+            <ProfileForm
+              initialValues={{
+                first_name: user?.user.first_name,
+                last_name: user?.user.last_name,
+                email: user?.email_id,
+                phone: user?.phone,
+                // birth_date: user?.customer_details.split(" ")[1]
+              }}
+              onSubmit={call}
+            />
           </main>
-          <footer className="p-5 w-full">
-            <h2>เชื่อมต่อบัญชีที่เข้าสู่ระบบ</h2>
-            <div>
-              <button className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full bg-[#1877F2] flex items-center justify-center gap-x-4 inter`}>
-                Save
-              </button>
-              <button className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full bg-[#1877F2] flex items-center justify-center gap-x-4 inter`}>
-                <img src={fblogo} />
-                Sign In with Facebook
-              </button>
-              <button className={`block mt-5 w-1/2 text-[#0000008A] rounded-[9px] p-3 w-full bg-white flex items-center justify-center gap-x-4 inter`} style={{filter:"drop-shadow(0 0 3px #00000014)"}}>
-                <img src={googlelogo} />
-                Sign In with Google
-              </button>
-              <button className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full bg-black flex items-center justify-center gap-x-4 inter`} style={{filter:"drop-shadow(0 0 3px #00000014)"}}>
-                <img src={applelogo} />
-                Sign In with Apple
-              </button>
-            </div>
-          </footer>
         </>
       )}
 
       {changePhone && (
         <>
-          <header className='p-[14px] border-b border-b-[#F2F2F2] flex gap-x-[7px] text-md font-bold'>
+          <header className='p-[14px] border-b border-b-[#F2F2F2] flex gap-x-[7px] text-md font-bold fixed w-full top-0 bg-white z-[999]'>
             <button onClick={changeToEditPro}>
               <ArrowLeft />
             </button>
             เปลี่ยนเบอร์โทร
           </header>
-          <main className='px-5 py-[46px]'>
+          <main className='px-5 py-[46px] mt-[53px]'>
             <h1 className='text-[22px] font-bold'>เปลี่ยนเบอร์มือถือของคุณ</h1>
             <p className='mt-4'>กรอกเบอร์มือถือของคุณและกดรับรหัสยืนยันทาง SMS (OTP) เพื่อยืนยันเบอร์มือถือของคุณ</p>
 
             <div className="flex gap-x-3">
               <input type="tel" id="phone" autoComplete="off" ref={telRef} className={`relative border ${phoneError ? "border-[#EC5454]" : "border-[#E3E3E3]"} rounded-[8px] outline-none py-2 px-3 mt-[11px] w-full`} onInput={(e) => {
-                if (e.target.value !== ""){
+                if (e.target.value !== "") {
                   setFilledPhone(true)
                 } else {
                   setFilledPhone(false)
                 }
-              }} onKeyDown={() => setPhoneError(false)}/>
+              }} onKeyDown={() => setPhoneError(false)} />
             </div>
 
             {!phoneError ? "" : (<p className="text-[#EC5454] inter mt-2">This phone number is invalid</p>)}
 
             <button onClick={() => {
-              if (telRef.current.value.length !== 10){
+              if (telRef.current.value.length !== 10) {
                 setPhoneError(true);
               } else {
                 goNext();
@@ -163,12 +126,12 @@ const EditProfile = () => {
           </header>
           <main className='px-5 py-[46px]'>
             <h1 className='text-[22px] font-bold'>ยืนยันรหัส OTP</h1>
-            <p className='mt-4'>เราได้ส่ง SMS (OTP) ไปที่เบอร์<br/>090-1234-567</p>
+            <p className='mt-4'>เราได้ส่ง SMS (OTP) ไปที่เบอร์<br />090-1234-567</p>
 
             <div className="flex gap-x-[9px] mt-9">
               <input type="text" maxLength="1" id="num1" ref={num1Ref} className={`border ${otperror ? "border-[#EC5454]" : "border-[#D8DADC]"} w-[16.67%] p-3 text-center text-2xl rounded-[15px]`} autoComplete="off" onKeyDown={() => {
                 setOtperror(false);
-              }}/>
+              }} />
               <input type="text" maxLength="1" id="num2" ref={num2Ref} className={`border ${otperror ? "border-[#EC5454]" : "border-[#D8DADC]"} w-[16.67%] p-3 text-center text-2xl rounded-[15px]`} autoComplete="off" onKeyDown={() => {
                 setOtperror(false);
               }} />
@@ -189,7 +152,7 @@ const EditProfile = () => {
             {!otperror ? (<p className="text-center mt-[43px]">I didn't receive a code <strong>Resend</strong></p>) : (<p className="text-center text-[#EC5454] inter mt-[43px]">Wrong code, please try again <strong>Resend</strong></p>)}
 
             <button onClick={() => {
-              if (num1Ref.current.value != "" && num2Ref.current.value != "" && num3Ref.current.value != "" && num4Ref.current.value != "" && num5Ref.current.value != "" && num6Ref.current.value != ""){
+              if (num1Ref.current.value != "" && num2Ref.current.value != "" && num3Ref.current.value != "" && num4Ref.current.value != "" && num5Ref.current.value != "" && num6Ref.current.value != "") {
                 setOtperror(false);
                 canChangeIt();
               } else {
@@ -210,8 +173,8 @@ const EditProfile = () => {
           </header>
           <main className='px-5 py-[46px]'>
             <img src={successIcon} />
-            <h1 className='text-[30px] font-bold mt-5'>ระบบเปลี่ยนเบอร์<br/>ใหม่สำเร็จ 👋</h1>
-            <p className='mt-4'>ระบบได้เปลี่ยนเบอร์ใหม่เรียบร้อยแล้ว<br/> คุณสามารถย้อนกลับไปหน้าอื่น ๆ ได้</p>
+            <h1 className='text-[30px] font-bold mt-5'>ระบบเปลี่ยนเบอร์<br />ใหม่สำเร็จ 👋</h1>
+            <p className='mt-4'>ระบบได้เปลี่ยนเบอร์ใหม่เรียบร้อยแล้ว<br /> คุณสามารถย้อนกลับไปหน้าอื่น ๆ ได้</p>
           </main>
           <footer className='flex px-5 gap-x-3'>
             <Link to="/" className='w-full bg-[#111111] border border-[#111111] text-white rounded-[9px] p-3 text-center'>กลับไปหน้าเดิม</Link>
@@ -223,3 +186,56 @@ const EditProfile = () => {
 }
 
 export default EditProfile
+
+
+export const ProfileForm = ({
+  initialValues,
+  onSubmit
+}) => {
+  const formik = useFormik({
+    initialValues: initialValues,
+    onSubmit: onSubmit
+  })
+
+  return (
+    <form className='flex flex-col gap-y-5' onSubmit={formik.handleSubmit}>
+      <div className='flex flex-col'>
+        <label htmlFor='name'>ชื่อ</label>
+        <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' name='first_name' value={formik.values.first_name} onChange={formik.handleChange} />
+      </div>
+
+      <div className='flex flex-col'>
+        <label htmlFor='surname'>นามสกุล</label>
+        <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' name='last_name' value={formik.values.last_name} onChange={formik.handleChange} />
+      </div>
+
+      {/* <div className='flex flex-col'>
+        <label htmlFor='email'>อีเมล</label>
+        <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' name='email' type='email' value={formik.values.email} onChange={formik.handleChange} />
+      </div> */}
+
+      <div className='flex flex-col relative'>
+        <label htmlFor='phone'>เบอร์โทร</label>
+        <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' name='phone' type='tel' value={formik.values.phone} onChange={formik.handleChange} />
+
+        <button className="absolute translate-y-[38px] right-[4px] bg-black text-white px-3 py-[6px] rounded-[6px]">แก้ไข</button>
+      </div>
+
+      <div className='flex flex-col'>
+        <label htmlFor='birth_date'>วัน/เดือน/ปีเกิด</label>
+        <input
+          className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]'
+          type='date'
+          name='birth_date'
+          value={formik.values.birth_date}
+          onChange={formik.handleChange}
+        />
+      </div>
+      <footer className="w-full">
+        <button type="submit" className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full flex items-center justify-center gap-x-4 inter bg-[#00B14F]`} style={{ fontFamily: "Eventpop" }}>
+          บันทึก
+        </button>
+      </footer>
+    </form>
+  )
+}

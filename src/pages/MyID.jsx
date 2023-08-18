@@ -7,21 +7,47 @@ import silverCard from '../img/silvercard.svg'
 import coin from '../img/coin.svg'
 import coupon from '../img/coupon.svg'
 import TitleHeader from '../components/TitleHeader'
+import QRCode from "react-qr-code";
+import Barcode from 'react-barcode';
 
 const MyID = () => {
   const [bronzeLevel, setBronzeLevel] = useState(false);
   const [silverLevel, setSilverLevel] = useState(true);
+
+  const [qrcode, setQrcode] = useState(true);
+  const [barcode, setBarcode] = useState(false);
+
+  const switchToQrcode = () => {
+    setQrcode(true);
+    setBarcode(false);
+  }
+
+  const switchToBarcode = () => {
+    setQrcode(false);
+    setBarcode(true);
+  }
 
   return (
     <>
       <TitleHeader title="ID ของฉัน" link="/my-account" />
       <main className='p-5'>
         <div className='inline-block w-full'>
-          <button className='p-4 my-2 w-1/2 border-r border-r-[#F2F2F2]'>QR Code</button>
-          <button className='p-4 my-2 w-1/2'>Barcode</button>
+          <button className='p-4 my-2 w-1/2 border-r border-r-[#F2F2F2]' onClick={switchToQrcode}>QR Code</button>
+          <button className='p-4 my-2 w-1/2' onClick={switchToBarcode}>Barcode</button>
 
           <div className='flex flex-col justify-center'>
-            <img src={myqr} className='m-auto'/>
+            {qrcode && (
+              <>
+                {/* <img src={myqr} className='m-auto'/> */}
+                <QRCode size={200} value="my-name" style={{border:"4px solid #00000029",borderRadius:"24px",padding:"10px",margin:"auto"}}/>
+              </>
+            )}
+
+            {barcode && (
+              <div className='flex justify-center'>
+                <Barcode value='my-name'/>
+              </div>
+            )}
 
             <div className='flex items-center gap-x-[14px] mt-6 justify-center'>
               <img src={silverLevel ? silverCard : ""} />
