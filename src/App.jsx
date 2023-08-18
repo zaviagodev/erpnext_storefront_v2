@@ -1,19 +1,19 @@
 import { FrappeProvider } from "frappe-react-sdk";
-import { Routes, Route, useNavigate ,useLocation} from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Product from "./pages/Product";
 import './App.css'
-import { useEffect,useState } from "react";
+import { useEffect } from "react";
 import { ProductsProvider } from "./hooks/useProducts";
 import { CartProvider } from "./hooks/useCart";
 import Cart from "./components/Cart";
 import Checkout from "./pages/Checkout";
 import Profile from "./pages/Profile";
 import { UserProvider } from "./hooks/useUser";
+import { getToken } from "./utils/helper";
 import BankInfoPage from "./pages/BankInfoPage";
 import MyAccount from "./pages/MyAccount";
-import Phonverify from "./pages/Phoneverifcation";
 import ShippingAddress from "./pages/address/ShippingAddress";
 import AddShippingAddress from "./pages/address/ShippingAddressAdd";
 import EditShippingAddress from "./pages/address/ShippingAddressEdit";
@@ -33,32 +33,28 @@ import ShopPageFilter from "./pages/ShopPage-filter";
 import ShopPageType from "./pages/ShopPage-type";
 import Wishlist from "./pages/Wishlist";
 import RewardPage from "./pages/RewardPage";
-import { getToken, removeToken, setToken } from './utils/helper';
-import Gifts from "./pages/Gifts";
+import CollectPoints from "./pages/CollectPoints";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import Consent from "./pages/Consent";
+import HowRedeemReward from "./pages/HowRedeemReward";
+import MemberConditions from "./pages/MemberConditions";
+
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
 import BlogAdd from "./pages/admin/BlogAdd";
 import RewardDetails from "./pages/RewardDetails";
-import { useFrappeGetCall } from 'frappe-react-sdk';
+import RewardCouponPage from "./pages/RewardCouponPage";
+import ProductReward from "./pages/ProductReward";
 
-function App(ev) {
+function App() {
   const navigate = useNavigate();
-  const search = useLocation().search;
-  const token = new URLSearchParams(search).get("token");
-  const [user, setUser] = useState(null);
   useEffect(() => {
-
-    if(token){
-      setToken(token)
-      navigate("/");
-    }
- 
     if (!getToken()) {
       navigate("/login");
     }
   }, [navigate]);
 
-
+  const location = useLocation();
 
   return (
     <FrappeProvider url={"https://dev.zaviago.com"}
@@ -72,11 +68,13 @@ function App(ev) {
       <UserProvider>
         <ProductsProvider>
           <CartProvider>
-            <Routes>
+            <Routes key={location.pathname} location={location}>
               <Route path="/" element={<Home />} />
               <Route path="products/:id" element={<Product />} />
+              <Route path="product-reward/:id" element={<ProductReward />} />
               <Route path="product-compare/:id" element={<ProductCompare />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/collect-points" element={<CollectPoints />} />
               <Route path="/thankyou" element={<BankInfoPage />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
@@ -100,8 +98,12 @@ function App(ev) {
               <Route path="/wishlist" element={<Wishlist />}/>
               <Route path="/reward" element={<RewardPage />}/>
               <Route path="/reward-details" element={<RewardDetails />}/>
-              <Route path="/gifts" element={<Gifts />}/>
-              <Route path="/phonverify" element={<Phonverify />}/>
+              <Route path="/reward-coupon" element={<RewardCouponPage />}/>
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />}/>
+              <Route path="/consent" element={<Consent />}/>
+              <Route path="/how-to-collect-rewards" element={<HowRedeemReward />} />
+              <Route path="/member-conditions" element={<MemberConditions />} />
+
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />
               <Route path="/blog-add" element={<BlogAdd />} />

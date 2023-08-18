@@ -162,7 +162,7 @@ const ShopPageType = ({min, max, onChange}) => {
     }
   ]
   return (
-    <>
+    <div>
       <TitleHeader link="/shop" title="ประเภทสินค้า" />
       <main>
         <Accordion items={itemLists}/>
@@ -171,7 +171,7 @@ const ShopPageType = ({min, max, onChange}) => {
         <button className='w-1/2 bg-white border border-[#111111] text-[#111111] rounded-[9px] p-3 text-center'>เคลียร์การค้นหา</button>
         <button className='w-1/2 bg-[#111111] border border-[#111111] text-white rounded-[9px] p-3 text-center'>ค้นหาสินค้า</button>
       </footer>
-    </>
+    </div>
   )
 }
 
