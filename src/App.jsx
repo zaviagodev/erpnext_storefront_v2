@@ -34,6 +34,10 @@ import ShopPageType from "./pages/ShopPage-type";
 import Wishlist from "./pages/Wishlist";
 import RewardPage from "./pages/RewardPage";
 import CollectPoints from "./pages/CollectPoints";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import Consent from "./pages/Consent";
+import HowRedeemReward from "./pages/HowRedeemReward";
+import MemberConditions from "./pages/MemberConditions";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -95,6 +99,10 @@ function App() {
               <Route path="/reward" element={<RewardPage />}/>
               <Route path="/reward-details" element={<RewardDetails />}/>
               <Route path="/reward-coupon" element={<RewardCouponPage />}/>
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />}/>
+              <Route path="/consent" element={<Consent />}/>
+              <Route path="/how-to-collect-rewards" element={<HowRedeemReward />} />
+              <Route path="/member-conditions" element={<MemberConditions />} />
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />

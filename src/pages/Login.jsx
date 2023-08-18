@@ -5,15 +5,15 @@ import { useFrappeAuth } from 'frappe-react-sdk';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks/useUser';
-import { getToken } from '../utils/helper';
 import { useFrappeGetCall } from 'frappe-react-sdk';
-
+import { getToken, removeToken, setToken } from '../utils/helper';
 
 export default function Login() {
     const { login } = useUser();
     const [lineurl, setlineurl] = useState("");
     const navigate = useNavigate();
-    const { data } = useFrappeGetCall('/honda_api.api_calls.linetoken.get_oauth2_authorize_url', null, ``)
+    const { data } = useFrappeGetCall('/honda_api.api_calls.linetoken.get_oauth2_authorize_url', null, ``);
+    const params = new URLSearchParams(window.location.pathname);
 
     const line = async (usr, pwd) => {
         try {
