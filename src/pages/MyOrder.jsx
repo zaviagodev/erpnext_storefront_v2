@@ -63,7 +63,7 @@ const MyOrder = () => {
                     </p>
                   </div>
                   <div className="w-full">
-                    <Link to={d.delivery_notes[0]?.status === 'Draft' && `/my-order-details/${d.name}`} className='w-full block text-white rounded-[9px] p-3 text-center' style={{background:d.delivery_notes[0]?.status === 'Draft' ? "#00B14F" : "#C5C5C5"}}>ดูข้อมูล</Link>
+                    <Link to={d.delivery_notes[0]?.status === 'Draft' && `/my-order-details/${d.name}`} className='w-full block text-white rounded-[9px] p-3 text-center' style={{background:d.delivery_notes[0]?.status === 'Draft' ? "#111111" : "#C5C5C5"}}>ดูข้อมูล</Link>
                   </div>
                 </div>
               </section>
