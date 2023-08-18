@@ -7,6 +7,12 @@ import silverCard from '../img/silvercard-reward.svg'
 import coin from '../img/coin2.svg'
 import iconRightHead from '../img/iconRightHead.svg'
 import bookClosed from "../img/book-closed.svg"
+import transferPoints from '../img/transfer-point.svg'
+import redeemPoints from '../img/redeem-points.svg'
+import myTickets from '../img/my-tickets.svg'
+import { useProducts } from "../hooks/useProducts";
+import { SfIconArrowForward } from "@storefront-ui/react";
+import ProductCard from "../components/ProductCard";
 
 const RewardPage = () => {
   const { currentUser, updateCurrentUser } = useFrappeAuth();
@@ -15,13 +21,15 @@ const RewardPage = () => {
     filters: ['name', 'full_name', 'user_image']
   })
 
+  const { products } = useProducts()
+
   useEffect(() => {
       updateCurrentUser()
   }, [updateCurrentUser])
 
   return (
     <>
-      <header  className="p-5 bg-[#BBE5BB] w-full">
+      <header className="p-5 pb-[60px] bg-[#BBE5BB] w-full">
         {data && (
           <div className='flex items-center'>
             <img src={data.user_image} width="64" className='rounded-[99px]'/>
@@ -63,17 +71,74 @@ const RewardPage = () => {
           </div>
         </div>
       </header>
-      <Link to='/collect-points' state={{ url: "/" }} className='font-normal font-sm leading-[20px] text-white'>
-        <div className='flex justify-between items-center my-[32px] mx-5 p-5 h-[54px] rounded-lg bg-[#00B14F]' style={{width:"calc(100% - 40px)"}}>
-          <div className='flex items-center gap-x-2'>
-            <img className='w-[17px] h-[17px]' src={bookClosed} alt="" />
-            วิธีเก็บคะแนน
+      <main className='px-5 relative top-[-40px]'>
+        <div className='bg-white rounded-[6px] items-center' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
+          <div className='py-5 px-2 w-full flex'>
+            <Link to="/wishlist" className='basis-1/3 text-sm flex flex-col items-center text-center text-[#333333] justify-end'>
+              <img src={redeemPoints} className="mb-1"/>
+              แลกคะแนน
+            </Link>
+            <Link to="/my-order" className='basis-1/3 text-sm flex flex-col items-center text-center text-[#333333] justify-end'>
+              <img src={transferPoints} className="mb-1"/>
+              โอนคะแนน
+            </Link>
+            <Link to="#" className='basis-1/3 text-sm flex flex-col items-center text-center text-[#333333] justify-end'>
+              <img src={myTickets} className="mb-1"/>
+              คูปองของฉัน
+            </Link>
           </div>
-          <div>
-            <img src={iconRightHead} className='w-[6px] h-[10px]' alt="" />
+
+          <hr style={{borderColor:"#F2F2F2"}}/>
+
+          <div className='inline-block w-full'>
+            <Link to='/reward-history'>
+              <button className='py-4 text-center my-2 w-1/2 border-r border-r-[#F2F2F2] text-[#333333] text-[15px] font-bold'>ประวัติการใช้งานคะแนน</button>
+            </Link>
+            <Link>
+              <button className='py-4 text-center my-2 w-1/2 text-[#333333] text-[15px] font-bold'>ระดับสมาชิก</button>
+            </Link>
           </div>
         </div>
-      </Link>
+      </main>
+
+      <section className="mb-[100px]">
+        <div>
+          <h2 className='text-[#3D3D3D] font-bold flex items-center px-5 mb-[14px] leading-6'>
+            คูปองส่วนลดออนไลน์
+            <SfIconArrowForward className="w-[18px] text-black ml-2"/>
+          </h2>
+
+            <div className="flex overflow-x-auto gap-x-[14px] mx-auto px-5">
+              {(products ?? []).map((product) => (
+                <ProductCard
+                  key={product.item_code}
+                  title={product.name}
+                  productId={product.name}
+                  itemCode={product.item_code}
+                  price={product.formatted_price}
+                  thumbnail={product.website_image ? product.website_image : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"} />
+              ))}
+            </div>
+        </div>
+        <div>
+          <h2 className='text-[#3D3D3D] font-bold flex items-center px-5 mb-[14px] leading-6'>
+            แลกคะแนน
+            <SfIconArrowForward className="w-[18px] text-black ml-2"/>
+          </h2>
+
+            <div className="flex overflow-x-auto gap-x-[14px] mx-auto px-5">
+              {(products ?? []).map((product) => (
+                <ProductCard
+                  key={product.item_code}
+                  title={product.name}
+                  productId={product.name}
+                  itemCode={product.item_code}
+                  price={product.formatted_price}
+                  thumbnail={product.website_image ? product.website_image : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"} />
+              ))}
+            </div>
+        </div>
+      </section>
       <FooterMenu active={2}/>
     </>
   )

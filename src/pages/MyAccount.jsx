@@ -232,8 +232,12 @@ const MyAccount = () => {
           <hr style={{borderColor:"#F2F2F2"}}/>
 
           <div className='inline-block w-full'>
-            <button className='p-4 my-2 w-1/2 border-r border-r-[#F2F2F2]'>การใช้งานคะแนน</button>
-            <button className='p-4 my-2 w-1/2'>ระดับคะแนน</button>
+            <Link to='/reward-history'>
+              <button className='p-4 my-2 w-1/2 border-r border-r-[#F2F2F2] text-[#333333] text-[15px] font-bold'>การใช้งานคะแนน</button>
+            </Link>
+            <Link to=''>
+              <button className='p-4 my-2 w-1/2 text-[#333333] text-[15px] font-bold'>ระดับคะแนน</button>
+            </Link>
           </div>
         </div>
 
