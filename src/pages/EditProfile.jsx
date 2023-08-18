@@ -198,7 +198,7 @@ export const ProfileForm = ({
   })
 
   return (
-    <form className='flex flex-col gap-y-5' onSubmit={formik.handleSubmit}>
+    <form className='flex flex-col gap-y-5 mt-[53px]' onSubmit={formik.handleSubmit}>
       <div className='flex flex-col'>
         <label htmlFor='name'>ชื่อ</label>
         <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' name='first_name' value={formik.values.first_name} onChange={formik.handleChange} />
@@ -232,7 +232,7 @@ export const ProfileForm = ({
         />
       </div>
       <footer className="w-full">
-        <button type="submit" className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full flex items-center justify-center gap-x-4 inter bg-[#00B14F]`} style={{ fontFamily: "Eventpop" }}>
+        <button type="submit" className={`block mt-5 w-1/2 text-white rounded-[9px] p-3 w-full flex items-center justify-center gap-x-4 inter bg-[#111111]`} style={{ fontFamily: "Eventpop" }}>
           บันทึก
         </button>
       </footer>
