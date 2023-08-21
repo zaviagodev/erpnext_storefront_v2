@@ -4,7 +4,7 @@ import promptpay from '../../img/promptpay.svg'
 import truemoney from '../../img/truemoney.svg'
 import { useRef } from "react";
 
-const PaymentDetails = () => {
+const PaymentDetails = ({active}) => {
   const paymentLists = [
     {
       icon: (<Phone01 />),
@@ -23,9 +23,9 @@ const PaymentDetails = () => {
     }
   ]
 
-  const Choices = ({icon, title, key}) => {
+  const Choices = ({icon, title, key, current}) => {
     return (
-      <label htmlFor={key} className='flex justify-between p-5 w-full border border-[#F2F2F2] items-center rounded-[7px]'>
+      <label htmlFor={key} className={`flex justify-between p-5 w-full border items-center rounded-[7px] ${current === active ? "border-[#70DFA3]" : "border-[#F2F2F2]"}`}>
         <div className='text-left'>
           <h2 className='text-[#333333] text-sm font-bold flex items-center gap-x-3'>
             {icon}
@@ -59,8 +59,8 @@ const PaymentDetails = () => {
       <main className="mt-[53px] p-5">
         <h2 className="mb-3 text-[#333333] font-bold">เลือกช่องทางชำระเงิน</h2>
         <div className="flex flex-col gap-y-4">
-          {paymentLists.map((list) => 
-            <Choices icon={list.icon} title={list.title} key={list.key}/>
+          {paymentLists.map((list, index) => 
+            <Choices icon={list.icon} title={list.title} key={list.key} current={index}/>
           )}
         </div>
       </main>
