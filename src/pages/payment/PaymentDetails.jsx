@@ -32,7 +32,7 @@ const PaymentDetails = ({active}) => {
             {title}
           </h2>
         </div>
-        <div>
+        <div className="flex items-center">
           <input type="radio" id={key} name="payment-details-method" className='payment-details-check'/>
           <span className='payment-details-radios'></span>
         </div>
