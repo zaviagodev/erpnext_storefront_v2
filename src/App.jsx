@@ -39,6 +39,7 @@ import Consent from "./pages/Consent";
 import HowRedeemReward from "./pages/HowRedeemReward";
 import MemberConditions from "./pages/MemberConditions";
 import RewardHistory from "./pages/RewardHistory";
+import PaymentDetails from "./pages/payment/PaymentDetails";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -105,6 +106,7 @@ function App() {
               <Route path="/how-to-collect-rewards" element={<HowRedeemReward />} />
               <Route path="/member-conditions" element={<MemberConditions />} />
               <Route path="/reward-history" element={<RewardHistory />} />
+              <Route path="/payment-details" element={<PaymentDetails />} />
 
               <Route path="/blog-admin" element={<BlogAdmin />}/>
               <Route path="/blog-categories" element={<BlogCategories />} />

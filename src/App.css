@@ -72,7 +72,7 @@
   margin-left:280px;
 }
 
-.payment-check,.shop-filter-check,.product-type-input,.size-input,.product-colour-input {
+.payment-check,.shop-filter-check,.product-type-input,.size-input,.product-colour-input,.payment-details-check {
   position:absolute;
   opacity:0;
 }
@@ -99,7 +99,7 @@
   outline:1px solid black;
 }
 
-.payment-check:checked ~ .payment-radios {
+.payment-check:checked ~ .payment-radios, .payment-details-check:checked ~ .payment-details-radios {
   background-color:#00B14F;
   border-color:#00B14F;
   background-image:url('img/checked-box.svg');
@@ -115,6 +115,17 @@
   display:inline-block;
   border-radius:99px;
 }
+
+.payment-details-radios {
+  border:1px solid #C1C1C1;
+  background-color:white;
+  width:23px;
+  height:23px;
+  display:inline-block;
+  border-radius:99px;
+}
+
+.payment-details-check:checked
 
 .size-btn {
   height:36px;
