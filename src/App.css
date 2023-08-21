@@ -23,6 +23,12 @@
   font-weight: bold
 }
 
+.info-desc ol,.info-desc ul,.info-desc menu {
+  list-style: revert !important;
+  margin: revert !important;
+  padding: revert !important;
+}
+
 * {
   font-family:Eventpop, Inter
 }
