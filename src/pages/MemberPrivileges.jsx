@@ -1,10 +1,10 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 import TitleHeader from "../components/TitleHeader"
 import bronzeMember from '../img/bronze-member.png'
 import silverMember from '../img/silver-member.png'
 import goldMember from '../img/gold-member.png'
 import diamondMember from '../img/diamond-member.png'
-import { ShoppingBag02, Star01, Mail01 } from "@untitled-ui/icons-react"
+import { ShoppingBag02, Star01, Mail01, ChevronRight, HeartHand, MarkerPin01, Building02, Tag03, Gift01, User02 } from "@untitled-ui/icons-react"
 
 const MemberPrivileges = (current) => {
   const tabs = [
@@ -25,6 +25,19 @@ const MemberPrivileges = (current) => {
       type: 'diamond'
     }
   ]
+
+  const content = useRef(null);
+
+  const handleClick = (event) => {
+    event.currentTarget.classList.toggle("active");
+    var panel = event.currentTarget.nextElementSibling;
+
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  }
 
   const [type, setType] = useState('bronze');
 
@@ -60,10 +73,64 @@ const MemberPrivileges = (current) => {
     },
   ]
 
+  const silverPrivileges = [
+    {
+      icon: (<HeartHand />),
+      title: "Service",
+      desc: "บริการสุดพิเศษสำหรับลูกค้าซิลเวอร์เท่านั้น"
+    },
+    {
+      icon: (<MarkerPin01 />),
+      title: "ส่วนลดจากร้านในเครือ",
+      desc: "ร้านค้าในเครือมากกว่า 20 สาขา"
+    },
+    {
+      icon: (<Building02 />),
+      title: "ฟรีเครื่องดื่ม",
+      desc: "แลกรับเครื่องดื่มฟรีร้านอาหารในเครือ"
+    },
+  ]
+
+  const goldPrivileges = [
+    {
+      icon: (<Star01 />),
+      title: "Point",
+      desc: "รับคะแนนแบบ 2 เท่าทุกการซื้อ"
+    },
+    {
+      icon: (<Tag03 />),
+      title: "ส่วนลดพิเศษ",
+      desc: "ได้รับส่วนลดพิเศษสำหรับคุณโดยเฉพาะ"
+    },
+    {
+      icon: (<Gift01 />),
+      title: "ของขวัญ",
+      desc: "รับของขวัญสุดพิเศษจากเราทุกปี"
+    },
+  ]
+
+  const diamondPrivileges = [
+    {
+      icon: (<User02 />),
+      title: "Personal Assistant",
+      desc: "บริการผู้ช่วยส่วนตัว ทุกความต้องการของคุณ เราให้คุณอันดับ 1"
+    },
+    {
+      icon: (<ShoppingBag02 />),
+      title: "Privilege",
+      desc: "สิทธิพิเศษสำหรับร้านค้าในเครือและของขวัญสำหรับคุณ"
+    },
+    {
+      icon: (<Gift01 />),
+      title: "ของขวัญ",
+      desc: "รับของขวัญสุดพิเศษจากเราทุกเทศกาลและงานประจำปี"
+    },
+  ]
+
   return (
     <>
       <TitleHeader link='/reward' title='สิทธิพิเศษจากระดับสมาชิก' />
-      <header className="mt-[53px] fixed w-full top-0">
+      <header className="mt-[53px] fixed w-full top-0 border-b border-b-[#F2F2F2]">
         <button className='w-1/4' onClick={() => setType('bronze')}>
           <span className={`p-4 inline-block text-xs ${type === 'bronze' ? "text-[#111111]" : "text-[#8A8A8A]"}`}>สมาชิก</span>
           {type === 'bronze' && (
@@ -90,21 +157,62 @@ const MemberPrivileges = (current) => {
         </button>
       </header>
 
-      <main className="mt-[103px]">
-        <section className='py-[80px] w-3/4 h-full mx-auto relative bottom-0' style={{background:`url(${bronzeMember})`,backgroundRepeat:"no-repeat",backgroundSize:"contain"}}>
-          <div className="m-auto z-[5] w-[90%] relative">
-            <h2>ระดับ : สมาชิก</h2>
-            <p>คะแนนตั้งแต่ 0 - 49 คะแนน</p>
+      <main className="mt-[133px]">
+        <section style={{background:"linear-gradient(180deg, #FFFFFF 50%, #D9D9D9 100%)"}}>
+          <div className={`py-[80px] w-3/4 h-full mx-auto relative bottom-0`} style={{background:`url(${type == 'bronze' ? bronzeMember : type == 'silver' ? silverMember : type == 'gold' ? goldMember : diamondMember}) 0% 0% / contain no-repeat`}}>
+            <div className="m-auto z-[5] w-[90%] relative">
+              <h2 className="text-[18px] text-[#333333]">ระดับ : สมาชิก</h2>
+              {type == 'bronze' ? (
+                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 0 - 49 คะแนน</p>
+              ) : type == 'silver' ? (
+                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 50 - 99 คะแนน</p>
+              ) : type == 'gold' ? (
+                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 100 - 149 คะแนน</p>
+              ) : (
+                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 150 คะแนนขึ้นไป</p>
+              )}
+            </div>
           </div>
         </section>
-        <section className="px-5 pt-[30px]">
+        <section className="px-5 pt-[30px] bg-white relative top-[-65px]">
           <h2 className="text-[#333333] font-bold">สิทธิพิเศษทุกไลฟ์สไตล์</h2>
           <div className="flex flex-col gap-y-[18px] mt-[10px]">
-            {bronzePrivileges.map((privilege) => 
-              <PrivilegeList icon={privilege.icon} title={privilege.title} desc={privilege.desc}/>
+            {type == 'bronze' ? (
+              <>
+              {bronzePrivileges.map((privilege) => 
+                <PrivilegeList icon={privilege.icon} title={privilege.title} desc={privilege.desc}/>
+              )}
+              </>
+            ) : type == 'silver' ? (
+              <>
+              {silverPrivileges.map((privilege) => 
+                <PrivilegeList icon={privilege.icon} title={privilege.title} desc={privilege.desc}/>
+              )}
+              </>
+            ) : type == 'gold' ? (
+              <>
+              {goldPrivileges.map((privilege) => 
+                <PrivilegeList icon={privilege.icon} title={privilege.title} desc={privilege.desc}/>
+              )}
+              </>
+            ) : (
+              <>
+              {diamondPrivileges.map((privilege) => 
+                <PrivilegeList icon={privilege.icon} title={privilege.title} desc={privilege.desc}/>
+              )}
+              </>
             )}
           </div>
         </section>
+        <div className="relative top-[-40px]">
+          <button onClick={handleClick} className={`p-5 w-full flex justify-between border-y border-y-[#E3E3E3] accordion-btn`}>
+            คำถามที่พบบ่อย
+            <ChevronRight className={`accordion-arrow-anim`}/>
+          </button>
+          <div ref={content} className={`accordion-detail`}>
+            <div className="p-5">ได้แต่ตั้งคําถาม แต่ไม่กล้าถามเธอสักครั้ง</div>
+          </div>
+        </div>
       </main>
     </>
   )
