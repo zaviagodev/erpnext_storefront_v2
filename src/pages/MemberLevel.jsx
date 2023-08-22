@@ -3,6 +3,7 @@ import TitleHeader from "../components/TitleHeader";
 import silverFront from '../img/silver-front.png'
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import coin from '../img/coin2.svg'
 
 const MemberLevel = () => {
   const [level, setLevel] = useState('Silver')
@@ -17,8 +18,18 @@ const MemberLevel = () => {
       </header>
       <main className='px-5 relative top-[-40px]'>
         <div className='bg-white rounded-[6px] items-center' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
-          <div className='py-5 px-2 w-full flex'>
-            <h2>ระดับ: {level}</h2>
+          <div className='py-5 px-6 w-full flex justify-between items-center'>
+            <div className="flex flex-col">
+              <h2 className="text-[18px] font-bold">ระดับ: {level}</h2>
+              <p className="text-[#424242] text-xs">อีก 23 คะแนนเลื่อนเป็น Gold</p>
+            </div>
+            <div className="flex flex-col text-end">
+              <p className="text-[#333333] text-xs font-bold flex items-center gap-x-[5px]">
+                <img src={coin} />
+                คะแนน
+              </p>
+              <h1 className="text-[22px] text-[#333333] font-bold leading-[22px]">50</h1>
+            </div>
           </div>
 
           <hr style={{borderColor:"#F2F2F2"}}/>
