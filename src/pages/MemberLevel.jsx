@@ -7,6 +7,7 @@ import coin from '../img/coin2.svg'
 
 const MemberLevel = () => {
   const [level, setLevel] = useState('Silver')
+
   return (
     <>
       <TitleHeader link="/reward" title="ระดับสมาชิก"/>
@@ -43,6 +44,10 @@ const MemberLevel = () => {
             </Link>
           </div>
         </div>
+
+        <section>
+          <h2></h2>
+        </section>
       </main>
     </>
   )
