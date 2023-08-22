@@ -1,60 +1,47 @@
 import { ShoppingBag01, ArrowLeft, Phone01, CreditCard02, Scan } from "@untitled-ui/icons-react";
 import { Link } from "react-router-dom";
-import promptpay from '../../img/promptpay.svg'
-import truemoney from '../../img/truemoney.svg'
-import rabbitline from '../../img/rabbit-line-pay.svg'
-import shopeepay from '../../img/shopee-pay.svg'
 import { useRef, useState } from "react";
+import kplus from '../../img/kplus.svg'
+import krungthainext from '../../img/krungthai-next.svg'
+import krungsri from '../../img/krungsri.svg'
+import scbeasy from '../../img/scb-easy.svg'
+import bualuangm from '../../img/bualuangm.svg'
 
-const PaymentDetails = (num, link) => {
+const MobileBanking = (num, link) => {
   const paymentLists = [
     {
-      icon: (<Phone01 />),
-      title: 'Mobile banking',
-      key: 'mobile-banking',
+      icon: (<img src={kplus} />),
+      title: 'KPLUS',
+      key: 'kplus',
       num: 0,
-      link: '/mobile-banking'
+      link: ''
     },
     {
-      icon: (<img src={promptpay} />),
-      title: 'QR พร้อมเพย์',
-      key: 'promptpay',
+      icon: (<img src={krungthainext} />),
+      title: 'Krungthai NEXT',
+      key: 'krungthainext',
       num: 1,
-      link: '/promptpay'
+      link: ''
     },
     {
-      icon: (<img src={truemoney} />),
-      title: 'True Money Wallet',
-      key: 'truemoney',
+      icon: (<img src={krungsri} />),
+      title: 'KMA-Krungsri',
+      key: 'kmakrungsri',
       num: 2,
       link: ''
     },
     {
-      icon: (<img src={rabbitline} />),
-      title: 'Rabbit Line Pay',
-      key: 'rabbitline',
+      icon: (<img src={scbeasy} />),
+      title: 'SCB Easy',
+      key: 'scbeasy',
       num: 3,
       link: ''
     },
     {
-      icon: (<img src={shopeepay} />),
-      title: 'Shopee Pay',
-      key: 'shopeepay',
+      icon: (<img src={bualuangm} />),
+      title: 'BualuangM',
+      key: 'bualuangm',
       num: 4,
-      link: ''
-    },
-    {
-      icon: (<CreditCard02 />),
-      title: 'เครดิตการ์ด',
-      key: 'creditcard',
-      num: 5,
-      link: '/credit-card'
-    },
-    {
-      icon: (<Scan />),
-      title: 'Bill Payment',
-      key: 'billpayment',
-      num: 6,
       link: ''
     },
   ]
@@ -66,7 +53,7 @@ const PaymentDetails = (num, link) => {
     <>
       <header className={`p-[14px] border-b border-b-[#F2F2F2] text-md font-bold bg-white flex justify-between items-center fixed top-0 z-[999] w-full`}>
         <div className="flex items-center gap-x-[7px]">
-          <Link to='/categories'>
+          <Link to='/payment-details'>
             <ArrowLeft />
           </Link>
           ช่องทางชำระ
@@ -104,4 +91,4 @@ const PaymentDetails = (num, link) => {
   )
 }
 
-export default PaymentDetails;
+export default MobileBanking;
