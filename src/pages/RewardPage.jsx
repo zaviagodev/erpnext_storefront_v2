@@ -94,7 +94,7 @@ const RewardPage = () => {
             <Link to='/reward-history'>
               <button className='py-4 text-center my-2 w-1/2 border-r border-r-[#F2F2F2] text-[#333333] text-[15px] font-bold'>ประวัติการใช้งานคะแนน</button>
             </Link>
-            <Link>
+            <Link to='/member-level'>
               <button className='py-4 text-center my-2 w-1/2 text-[#333333] text-[15px] font-bold'>ระดับสมาชิก</button>
             </Link>
           </div>
