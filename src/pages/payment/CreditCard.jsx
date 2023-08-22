@@ -57,12 +57,12 @@ const CreditCard = () => {
           <img src={creditcards} className="w-fit"/>
           <div className='flex flex-col'>
             <label htmlFor='card-number' className="text-[#333333] text-sm font-bold">หมายเลขบัตร</label>
-            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='card-number' name='card-number' type='text' placeholder='0-000-000-00-0-0'/>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='card-number' name='card-number' type='text' placeholder={updateCard ? "0-123-456-98-0-1" : "0-000-000-00-0-0"}/>
           </div>
 
           <div className='flex flex-col'>
             <label htmlFor='card-name' className="text-[#333333] text-sm font-bold">ชื่อที่แสดงบนบัตร</label>
-            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='card-name' name='card-name' type='text'/>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='card-name' name='card-name' type='text' placeholder={updateCard ? "ศิริพร เจริญไพล" : ""}/>
           </div>
 
           <div className='flex gap-x-[11px]' style={{width:"calc(100% - 11px)"}}>

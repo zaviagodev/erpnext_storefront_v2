@@ -66,7 +66,7 @@ const MobileBanking = (num, link) => {
         </div>
       </header>
       <main className="mt-[53px] mb-[88px] p-5">
-        <h2 className="mb-3 text-[#333333] font-bold">เลือกช่องทางชำระเงิน</h2>
+        <h2 className="mb-3 text-[#333333] font-bold">เลือกบัญชีธนาคารของคุณ</h2>
         <div className="flex flex-col gap-y-4">
           {paymentLists.map((list, index) => 
             <label htmlFor={list.key} className={`flex justify-between p-5 w-full border items-center rounded-[7px] ${list.num === active ? "border-[#70DFA3] bg-[#F0FFF7]" : "border-[#F2F2F2]"}`}>
