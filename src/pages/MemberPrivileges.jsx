@@ -129,7 +129,7 @@ const MemberPrivileges = (current) => {
 
   return (
     <>
-      <TitleHeader link='/reward' title='สิทธิพิเศษจากระดับสมาชิก' />
+      <TitleHeader link='/member-level' title='สิทธิพิเศษจากระดับสมาชิก' />
       <header className="mt-[53px] fixed w-full top-0 border-b border-b-[#F2F2F2]">
         <button className='w-1/4' onClick={() => setType('bronze')}>
           <span className={`p-4 inline-block text-xs ${type === 'bronze' ? "text-[#111111]" : "text-[#8A8A8A]"}`}>สมาชิก</span>

@@ -91,7 +91,7 @@ const MyAccount = () => {
     {
       icon: <Building02 />,
       title: 'หน้าร้านของเรา',
-      link: '#'
+      link: '/store-location'
     },
     {
       icon: <BookClosed />,

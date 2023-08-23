@@ -47,6 +47,7 @@ import MemberLevel from "./pages/MemberLevel";
 import MemberPrivileges from "./pages/MemberPrivileges";
 import ShopPageSearch from "./pages/ShopPage-search";
 import ShopPageViewed from "./pages/ShopPage-viewed";
+import StoreLocation from "./pages/StoreLocation";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -119,6 +120,7 @@ function App() {
               <Route path="/mobile-banking" element={<MobileBanking />} />
               <Route path="/shop/search" element={<ShopPageSearch />} />
               <Route path="/shop/viewed" element={<ShopPageViewed />} />
+              <Route path="/store-location" element={<StoreLocation />} />
 
               <Route path="/member-level" element={<MemberLevel />} />
               <Route path="/member-privileges" element={<MemberPrivileges />} />

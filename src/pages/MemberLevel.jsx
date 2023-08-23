@@ -12,10 +12,10 @@ const MemberLevel = () => {
     <>
       <TitleHeader link="/reward" title="ระดับสมาชิก"/>
       <header className='relative mt-[53px]' style={{background:`url(${silverFront})`,height:"200px",backgroundRepeat:"no-repeat",backgroundSize:"cover"}}>
-        <button className="flex justify-end px-[18px] py-3 gap-x-[9px] bg-[#57575780] w-full text-[13px] text-white items-center">
+        <Link to='/member-privileges' className="flex justify-end px-[18px] py-3 gap-x-[9px] bg-[#57575780] w-full text-[13px] text-white items-center">
           สิทธิพิเศษจากระดับสมาชิก
           <ChevronRight viewBox="0 0 24 24" width='18' height='18' />
-        </button>
+        </Link>
       </header>
       <main className='px-5 relative top-[-40px]'>
         <div className='bg-white rounded-[6px] items-center' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
