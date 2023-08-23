@@ -45,6 +45,7 @@ import CreditCard from "./pages/payment/CreditCard";
 import MobileBanking from "./pages/payment/MobileBanking";
 import MemberLevel from "./pages/MemberLevel";
 import MemberPrivileges from "./pages/MemberPrivileges";
+import ShopPageSearch from "./pages/ShopPage-search";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -115,6 +116,7 @@ function App() {
               <Route path="/promptpay" element={<Promptpay />} />
               <Route path="/credit-card" element={<CreditCard />} />
               <Route path="/mobile-banking" element={<MobileBanking />} />
+              <Route path="/shop/search" element={<ShopPageSearch />} />
 
               <Route path="/member-level" element={<MemberLevel />} />
               <Route path="/member-privileges" element={<MemberPrivileges />} />

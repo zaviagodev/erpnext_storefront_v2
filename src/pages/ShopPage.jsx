@@ -12,16 +12,9 @@ const ShopPage = () => {
   const { products } = useProducts()
   const { cartCount, setIsOpen } = useCart()
 
-  const [clickSearch, setClickSearch] = useState(false);
-
-  const onClickSearch = () => {
-    setClickSearch(true);
-    document.getElementById('search').focus();
-  }
-
   return (
     <>
-      <header className={`${clickSearch ? "py-[9px] px-[14px]" : "p-[14px]"} border-b border-b-[#F2F2F2] text-md font-bold bg-white flex justify-between items-center`}>
+      <header className={`p-[14px] border-b border-b-[#F2F2F2] text-md font-bold bg-white flex justify-between items-center`}>
         <div className="flex items-center gap-x-[7px]">
           <Link to='/categories'>
             <ArrowLeft />
@@ -30,16 +23,9 @@ const ShopPage = () => {
         </div>
 
         <div className="flex items-center">
-          {!clickSearch ? (
-            <button className="px-2" onClick={onClickSearch}>
-              <img src={searchIcon} />
-            </button>
-          ) : (
-            <>
-              <img src={searchIcon} className="absolute translate-x-[10px]"/>
-              <input type="search" id='search' className="p-[7px] pl-10 bg-[#E6E6E6] h-[34px] rounded-[9px] font-medium w-full text-[13px]" placeholder='พิมพ์ชื่อสินค้า แบรนด์ ลักษณะสินค้า' onBlur={() => setClickSearch(false)}/>
-            </>
-          )}
+          <Link to='/shop/search' className="px-2">
+            <img src={searchIcon} />
+          </Link>
           <button className="px-2" onClick={() => setIsOpen(true)}>
             <ShoppingBag01 viewBox='0 0 24 24' width="22" height="22"/>
           </button>
