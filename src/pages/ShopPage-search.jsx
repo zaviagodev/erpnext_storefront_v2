@@ -91,10 +91,12 @@ const ShopPageSearch = () => {
 
         <section>
           <div className='mt-[22px]'>
-            <h2 className='text-[#3D3D3D] font-bold flex items-center px-5 mb-[14px] leading-6'>
-              สินค้าที่ดูล่าสุด
-              <SfIconArrowForward className="w-[18px] text-black ml-2"/>
-            </h2>
+            <Link to='/shop/viewed'>
+              <h2 className='text-sm text-[#3D3D3D] font-bold flex items-center px-5 mb-[14px] leading-6'>
+                สินค้าที่ดูล่าสุด
+                <SfIconArrowForward className="w-[18px] text-black ml-2"/>
+              </h2>
+            </Link>
 
             <div className="flex overflow-x-auto gap-x-[14px] mx-auto px-5">
               {(products ?? []).map((product) => (
