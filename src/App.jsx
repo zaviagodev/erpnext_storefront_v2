@@ -48,6 +48,7 @@ import MemberPrivileges from "./pages/MemberPrivileges";
 import ShopPageSearch from "./pages/ShopPage-search";
 import ShopPageViewed from "./pages/ShopPage-viewed";
 import StoreLocation from "./pages/StoreLocation";
+import TaxInvoiceRequest from "./pages/TaxInvoiceRequest";
 
 import BlogAdmin from "./pages/admin/BlogAdmin";
 import BlogCategories from "./pages/admin/BlogCategories";
@@ -121,6 +122,7 @@ function App() {
               <Route path="/shop/search" element={<ShopPageSearch />} />
               <Route path="/shop/viewed" element={<ShopPageViewed />} />
               <Route path="/store-location" element={<StoreLocation />} />
+              <Route path="/tax-invoice-request" element={<TaxInvoiceRequest />} />
 
               <Route path="/member-level" element={<MemberLevel />} />
               <Route path="/member-privileges" element={<MemberPrivileges />} />
