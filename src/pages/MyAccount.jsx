@@ -241,28 +241,28 @@ const MyAccount = () => {
           </div>
         </div>
 
-        <h2 className='mt-[30px] mb-[10px]'>การตั้งค่า</h2>
+        <h2 className='mt-[30px] mb-[10px] font-bold text-[#333333]'>การตั้งค่า</h2>
         <div className='flex flex-col bg-white rounded-[6px] items-center gap-y-[10px]' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
           {settingsMenu.map((menu) => 
             <AccountMenu icon={menu.icon} title={menu.title} link={menu.link} />
           )}
         </div>
 
-        <h2 className='mt-[30px] mb-[10px]'>ความช่วยเหลือ</h2>
+        <h2 className='mt-[30px] mb-[10px] font-bold text-[#333333]'>ความช่วยเหลือ</h2>
         <div className='flex flex-col bg-white rounded-[6px] items-center gap-y-[10px]' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
           {helpMenu.map((menu) => 
             <AccountMenu icon={menu.icon} title={menu.title} link={menu.link} />
           )}
         </div>
 
-        <h2 className='mt-[30px] mb-[10px]'>ข้อมูลเพิ่มเติม</h2>
+        <h2 className='mt-[30px] mb-[10px] font-bold text-[#333333]'>ข้อมูลเพิ่มเติม</h2>
         <div className='flex flex-col bg-white rounded-[6px] items-center gap-y-[10px]' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
           {additionMenu.map((menu) => 
             <AccountMenu icon={menu.icon} title={menu.title} link={menu.link} />
           )}
         </div>
 
-        <h2 className='mt-[30px] mb-[10px]'>บัญชี</h2>
+        <h2 className='mt-[30px] mb-[10px] font-bold text-[#333333]'>บัญชี</h2>
         <div className='flex flex-col bg-white rounded-[6px] items-center gap-y-[10px]' style={{filter:"drop-shadow(0 4px 20px #6363630D"}}>
           <button className='flex justify-between items-center px-5 py-[17px] w-full' onClick={() => setOpenLogout(true)}>
             <div className='flex gap-x-[10px] text-sm text-[#111111] items-center'>
