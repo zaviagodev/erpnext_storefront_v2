@@ -52,7 +52,7 @@ const Product = () => {
                     </div>
                     <div className="flex justify-center h-full basis-full shrink-0 grow snap-center">
                         <img
-                            src={`${product?.website_image}`}
+                            src={`${import.meta.env.VITE_ERP_URL}${product?.website_image}`}
                             className="object-contain w-auto h-full"
                             aria-label={product?.website_image}
                             alt={product?.website_image}

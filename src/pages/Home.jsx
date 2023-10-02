@@ -11,6 +11,8 @@ const Home = () => {
         updateCurrentUser()
     }, [updateCurrentUser])
 
+    console.log(products)
+
     return (
         <>
             <header>
@@ -19,16 +21,17 @@ const Home = () => {
             <main>
                 <div
                     className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mx-auto"
-
+                
                 >
                     {(products ?? []).map((product) => (
                         <ProductCard
                             key={product.item_code}
-                            title={product.name}
+                            title={product.item_name}
                             productId={product.name}
+                            desc={product.web_long_description}
                             itemCode={product.item_code}
                             price={product.formatted_price}
-                            thumbnail={product.website_image ? product.website_image : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"}
+                            thumbnail={product.website_image ? `${import.meta.env.VITE_ERP_URL}${product.website_image}` : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"}
                             isGift={product?.item_group === "Gift" || product?.item_group === "Gift and Cards"}
                         />
                     ))}

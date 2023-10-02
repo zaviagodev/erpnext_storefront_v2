@@ -7,6 +7,7 @@ import { useCart } from '../hooks/useCart';
 const ProductCard = ({
     title,
     thumbnail,
+    desc,
     price,
     productId,
     itemCode,
@@ -49,7 +50,7 @@ const ProductCard = ({
                         </SfLink>
                     </div>
                     <p className="block py-2 font-normal typography-text-sm text-neutral-700">
-                        Lightweight • Non slip • Flexible outsole • Easy to wear on and off
+                        <div dangerouslySetInnerHTML={{ __html: desc }} />
                     </p>
                     <span className="block pb-2 font-bold typography-text-lg">{price}</span>
                     <SfButton type="button" size="sm" slotPrefix={<SfIconShoppingCart size="sm" />} onClick={(e) => {
