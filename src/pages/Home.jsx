@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
 import PromotionCard from '../components/PromotionCard';
+import BlogCard from '../components/BlogCard';
 import { useProducts } from '../hooks/useProducts'
 import { useFrappeAuth } from 'frappe-react-sdk';
 import { SfIconSearch, SfIconArrowForward, SfIconCalendarToday } from '@storefront-ui/react'
@@ -34,6 +35,7 @@ const Home = () => {
 
     return (
         <>
+          <img src={banner} className='w-full left-0 max-h-[240px] object-cover'/>
             <header className='m-3 bg-white relative pl-5 py-1 m-auto rounded-[6px] top-[-30px] flex' style={{filter:"drop-shadow(0 4px 20px #6363630D)",width:"calc(100% - 40px)"}}>
               <div className='w-[80%] py-2'>
                 <div className='flex'>
@@ -132,11 +134,14 @@ const Home = () => {
                   {(products ?? []).map((product) => (
                     <ProductCard
                       key={product.item_code}
-                      title={product.name}
+                      title={product.item_name}
                       productId={product.name}
+                      desc={product.web_long_description}
                       itemCode={product.item_code}
                       price={product.formatted_price}
-                      thumbnail={product.website_image ? product.website_image : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"} />
+                      thumbnail={product.website_image ? `${import.meta.env.VITE_ERP_URL}${product.website_image}` : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"}
+                      isGift={product?.item_group === "Gift" || product?.item_group === "Gift and Cards"}
+                    />
                   ))}
                 </div>
               </div>
@@ -151,11 +156,14 @@ const Home = () => {
                   {(products ?? []).map((product) => (
                     <ProductCard
                       key={product.item_code}
-                      title={product.name}
+                      title={product.item_name}
                       productId={product.name}
+                      desc={product.web_long_description}
                       itemCode={product.item_code}
                       price={product.formatted_price}
-                      thumbnail={product.website_image ? product.website_image : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"} />
+                      thumbnail={product.website_image ? `${import.meta.env.VITE_ERP_URL}${product.website_image}` : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"}
+                      isGift={product?.item_group === "Gift" || product?.item_group === "Gift and Cards"}
+                    />
                   ))}
                 </div>
               </div>
@@ -170,11 +178,14 @@ const Home = () => {
                   {(products ?? []).map((product) => (
                     <ProductCard
                       key={product.item_code}
-                      title={product.name}
+                      title={product.item_name}
                       productId={product.name}
+                      desc={product.web_long_description}
                       itemCode={product.item_code}
                       price={product.formatted_price}
-                      thumbnail={product.website_image ? product.website_image : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"} />
+                      thumbnail={product.website_image ? `${import.meta.env.VITE_ERP_URL}${product.website_image}` : "https://storage.googleapis.com/sfui_docs_artifacts_bucket_public/production/sneakers.png"}
+                      isGift={product?.item_group === "Gift" || product?.item_group === "Gift and Cards"}
+                    />
                   ))}
                 </div>
               </div>
