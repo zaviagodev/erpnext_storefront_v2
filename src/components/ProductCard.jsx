@@ -16,7 +16,7 @@ const ProductCard = ({
     const { addToCart } = useCart()
     return (
         <Link to={`/products/${productId}`}>
-            <div className="border border-neutral-200 rounded-md hover:shadow-lg max-w-[300px]">
+            <div className="rounded-md hover:shadow-lg">
                 <div className="relative">
                     <SfLink href="#" className="block">
                         <img
@@ -49,7 +49,7 @@ const ProductCard = ({
                             <SfCounter size="xs">{123}</SfCounter>
                         </SfLink>
                     </div>
-                    <p className="block py-2 font-normal typography-text-sm text-neutral-700">
+                    <p className="block py-2 font-normal typography-text-sm text-neutral-700 max-h-20 overflow-hidden text-ellipsis">
                         <div dangerouslySetInnerHTML={{ __html: desc }} />
                     </p>
                     <span className="block pb-2 font-bold typography-text-lg">{price}</span>

@@ -15,7 +15,8 @@ import { UserProvider } from "./hooks/useUser";
 import { getToken } from "./utils/helper";
 import BankInfoPage from "./pages/BankInfoPage";
 import LoyaltyProgram from "./pages/LoyaltyProgram";
-
+import MyAccount from "./pages/MyAccount";
+import Consent from "./pages/Consent";
 
 function App() {
   const navigate = useNavigate();
@@ -37,15 +38,16 @@ function App() {
       <UserProvider>
         <ProductsProvider>
           <CartProvider>
-            <NavHeader />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/consent" element={<Consent />} />
               <Route path="products/:id" element={<Product />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/loyality-program" element={<LoyaltyProgram />} />
               <Route path="/thankyou" element={<BankInfoPage />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/my-account" element={<MyAccount />}/>
             </Routes>
             <Cart />
           </CartProvider>
