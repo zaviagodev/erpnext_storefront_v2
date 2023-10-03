@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import TitleHeader from '../../components/TitleHeader'
+import { useFrappeGetDocList } from 'frappe-react-sdk'
 
 const ShippingAddress = () => {
   const [openDelete, setOpenDelete] = useState(false)
@@ -23,13 +24,20 @@ const ShippingAddress = () => {
     )
   }
 
+  const { data, loading, error } = useFrappeGetDocList('Shipping Address', {
+    fields: ['name', 'first_name', 'surname', 'address', 'province', 'district', 'postal_code', 'phone_number']
+  })
+
   return (
     <>
       <TitleHeader title="ที่อยู่ของคุณ" link="/my-account" />
 
-      <main className='p-5 flex flex-col gap-y-[12px]'>
+      <main className='p-5 flex flex-col gap-y-[12px] mt-[53px]'>
+        {/* Example: <AddressInfo name="John Persson" address="999/99 อาคาร แบงเทรดดิ้ง ชั้นสอง บริษัท ซาเวียโก จำกัด เขตสวนหลวง..."/> */}
         <AddressInfo name="John Persson" address="999/99 อาคาร แบงเทรดดิ้ง ชั้นสอง บริษัท ซาเวียโก จำกัด เขตสวนหลวง..."/>
-        <AddressInfo name="John Persson" address="999/99 อาคาร แบงเทรดดิ้ง ชั้นสอง บริษัท ซาเวียโก จำกัด เขตสวนหลวง..."/>
+        {(data ?? []).map((d) => 
+          <AddressInfo name={`${d.first_name} ${d.surname}`} address={`${d.address} ${d.district} ${d.province} ${d.postal_code}`}/>
+        )}
         <Link to="/shipping-address/add" className='bg-[#F4F4F4] p-5 rounded-[7px]'>
           <div className='flex gap-x-[7px] justify-center'>
             <MarkerPin01 />

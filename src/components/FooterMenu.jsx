@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom"
 import { Home02, Grid01, Award03, User02 } from "@untitled-ui/icons-react"
-import { useState } from "react"
 
 const FooterMenu = ({active}) => {
   const Menu = ({icon, title, link, current}) => {

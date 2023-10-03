@@ -17,7 +17,7 @@ function CollectPoints() {
       <div className="px-[20px] mt-[53px] pt-9">
         {data && (
           <>
-            <h2 className='text-base font-bold' style={{ fontFamily: "Eventpop" }}>{data.title}</h2>
+            <h2 className='text-base font-bold eventpop'>{data.title}</h2>
             <div className='mt-2 info-desc' dangerouslySetInnerHTML={{__html:data.description}}/>
           </>
         )}

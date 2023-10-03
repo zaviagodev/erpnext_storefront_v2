@@ -32,7 +32,6 @@ const EditProfile = () => {
   const num5Ref = useRef(null)
   const num6Ref = useRef(null)
 
-
   const changeToEditPro = () => {
     setChangePhone(false);
     setEditPro(true);
