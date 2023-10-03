@@ -1,7 +1,4 @@
-import { ArrowLeft, MarkerPin01, AlertTriangle } from '@untitled-ui/icons-react'
-import { Link } from 'react-router-dom'
 import { Fragment, useRef, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
 import TitleHeader from '../components/TitleHeader'
 
 const MyCoupon = () => {

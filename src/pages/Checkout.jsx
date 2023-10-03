@@ -36,12 +36,12 @@ const Checkout = () => {
 
     const formik = useFormik({
         initialValues: {
-            billing_address: '',
-            shipping_address: '',
-            use_different_shipping: false,
-            loyalty_points: '',
-            items: cart,
-            payment_method: 'bank-transfer',
+          billing_address: '',
+          shipping_address: '',
+          use_different_shipping: false,
+          loyalty_points: '',
+          items: cart,
+          payment_method: 'bank-transfer',
         },
         validationSchema: orderSchema,
         validateOnChange: false,
@@ -53,12 +53,12 @@ const Checkout = () => {
     }, [cartCount])
 
     useEffect(() => {
-        if (isCompleted) {
-            if (result?.message?.name) {
-                resetCart();
-                navigate(`/thankyou?order_id=${result.message.name}&amount=${result.message.grand_total}`)
-            }
+      if (isCompleted) {
+        if (result?.message?.name) {
+          resetCart();
+          navigate(`/thankyou?order_id=${result.message.name}&amount=${result.message.grand_total}`)
         }
+      }
     }, [isCompleted])
 
     const tooltipHide = {
@@ -141,22 +141,6 @@ const Checkout = () => {
                     value={formik.values.billing_address}
                     error={formik.errors.billing_address}
                 />
-                {/* <label className="w-full flex items-center gap-2">
-                    <SfCheckbox
-                        name="use_different_shipping"
-                        onChange={formik.handleChange}
-                        checked={formik.values.use_different_shipping} />
-                    Use different shipping address
-                </label>
-                {
-                    formik.values.use_different_shipping && (
-                        <AddressOptions
-                            onChange={value => formik.setFieldValue('shipping_address', value)}
-                            value={formik.values.shipping_address}
-                            error={formik.errors.shipping_address}
-                        />
-                    )
-                } */}
                 <PaymentMethods onChange={value => formik.setFieldValue('payment_method', value)} value={formik.values.payment_method} error={formik.errors.payment_method} />
             </form>
             <div className='p-4 md:w-2/5'>
@@ -208,30 +192,6 @@ const Checkout = () => {
                               <p className="my-2">฿ {delivery}</p>
                             </div>
                         </div>
-                        {/* {promoCode ? (
-                            <div className="flex items-center mb-5 py-5 border-y border-neutral-200">
-                                <p>PromoCode</p>
-                                <SfButton size="sm" variant="tertiary" className="ml-auto mr-2" onClick={removePromoCode}>
-                                    Remove
-                                </SfButton>
-                                <p>{formatPrice(promoCode)}</p>
-                            </div>
-                        ) : (
-                            <form className="flex gap-x-2 py-4 border-y border-neutral-200 mb-4" onSubmit={checkPromoCode}>
-                                <SfInput
-                                    value={inputValue}
-                                    placeholder="Enter promo code"
-                                    wrapperClassName="grow"
-                                    onChange={(event) => setInputValue(event.target.value)}
-                                />
-                                <SfButton type="submit" variant="secondary">
-                                    Apply
-                                </SfButton>
-                            </form>
-                        )} */}
-                        {/* <p className="px-3 py-1.5 bg-secondary-100 text-secondary-700 typography-text-sm rounded-md text-center mb-4">
-                            You are saving ${Math.abs(orderDetails.savings).toFixed(2)} on your order today!
-                        </p> */}
                         <div className="flex justify-between typography-headline-4 md:typography-headline-3 font-bold pb-4 mb-4 text-[#010101]">
                           <p>ทั้งหมด</p>
                           <p>฿ {total}</p>

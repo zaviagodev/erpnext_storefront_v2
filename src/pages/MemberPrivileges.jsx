@@ -162,15 +162,17 @@ const MemberPrivileges = (current) => {
           <div className={`py-[80px] w-3/4 h-full mx-auto relative bottom-0`} style={{background:`url(${type == 'bronze' ? bronzeMember : type == 'silver' ? silverMember : type == 'gold' ? goldMember : diamondMember}) 0% 0% / contain no-repeat`}}>
             <div className="m-auto z-[5] w-[90%] relative">
               <h2 className="text-[18px] text-[#333333]">ระดับ : สมาชิก</h2>
-              {type == 'bronze' ? (
-                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 0 - 49 คะแนน</p>
-              ) : type == 'silver' ? (
-                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 50 - 99 คะแนน</p>
-              ) : type == 'gold' ? (
-                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 100 - 149 คะแนน</p>
-              ) : (
-                <p className="text-[#424242] text-xs">คะแนนตั้งแต่ 150 คะแนนขึ้นไป</p>
-              )}
+              <p className="text-[#424242] text-xs">
+                {type == 'bronze' ? (
+                  'คะแนนตั้งแต่ 0 - 49 คะแนน'
+                ) : type == 'silver' ? (
+                  'คะแนนตั้งแต่ 50 - 99 คะแนน'
+                ) : type == 'gold' ? (
+                  'คะแนนตั้งแต่ 100 - 149 คะแนน'
+                ) : (
+                  'คะแนนตั้งแต่ 150 คะแนนขึ้นไป'
+                )}
+              </p>
             </div>
           </div>
         </section>

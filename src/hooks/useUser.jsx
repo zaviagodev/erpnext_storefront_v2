@@ -9,8 +9,6 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
-
-
     const { mutate } = useFrappeGetCall('headless_e_commerce.api.get_profile', {}, 'user-profile', {
         isOnline: () => getToken(),
         onSuccess: (data) => {
@@ -18,10 +16,9 @@ export const UserProvider = ({ children }) => {
         }
     })
 
-
     const login = async (usr, pwd) => {
         try {
-            return fetch("https://dev.zaviago.com/api/method/frappeauth_app.authentication.login", {
+            return fetch(`${import.meta.env.VITE_ERP_URL}api/method/frappeauth_app.authentication.login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

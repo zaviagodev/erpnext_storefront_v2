@@ -37,6 +37,10 @@
   font-family:'Inter', sans-serif
 }
 
+.eventpop {
+  font-family:'Eventpop', sans-serif
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

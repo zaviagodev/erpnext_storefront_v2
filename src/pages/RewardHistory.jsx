@@ -121,8 +121,6 @@ function RewardHistory() {
                                                     <div><img src={coinHand} className="w-[22px] h-[22px] ml-[27px]" alt="" /></div>
                                                     <div className="ml-[43px]">
                                                         <p className="mt-[6px] font-bold text-xs text-[#000000] leading-[14px]" style={{ fontFamily: "Eventpop" }}>คุณได้รับคะแนน</p>
-                                                        {/* <p className="mt-[9px] font-bold text-xs text-[#00B14F] leading-[14px]" style={{ fontFamily: "Eventpop" }}>{entry.invoice}</p>
-                                                        <p className="mt-[9px] font-normal text-[10px] text-[#00000061] leading-[14.5px]" style={{ fontFamily: "Eventpop" }}>{entry.posting_date}</p> */}
                                                     </div>
                                                 </div>
                                                 <div>
@@ -144,7 +142,6 @@ function RewardHistory() {
                                                     <div><img src={spentCoins} className="w-[22px] h-[22px] ml-[27px]" alt="" /></div>
                                                     <div className="ml-[43px]">
                                                         <p className="mt-[6px] font-bold text-xs text-[#111111] leading-[14px]">คะแนนที่ถูกใช้</p>
-                                                        {/* <p className="mt-[9px] font-bold text-xs text-[#00B14F] leading-[14px]" style={{ fontFamily: "Eventpop" }}>{exit.invoice}</p> */}
                                                         <p className="mt-[9px] font-normal text-[10px] text-[#00000061] leading-[14.5px]" style={{ fontFamily: "Eventpop" }}>{exit.posting_date}</p> 
                                                     </div>
                                                 </div>

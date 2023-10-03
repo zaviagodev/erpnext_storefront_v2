@@ -3,11 +3,7 @@ import { Link, useParams } from "react-router-dom"
 import { useFrappeGetDoc, useFrappeUpdateDoc, useFrappeDeleteDoc, useFrappeGetDocList, useFrappeDocTypeEventListener } from "frappe-react-sdk"
 import { ArrowBackIcon } from "@chakra-ui/icons"
 import { useEffect, useState, useRef } from "react";
-import EditorJS from '@editorjs/editorjs'
 import SidebarAdmin from "../../components/SidebarAdmin"
-import Header from '@editorjs/header'
-import List from '@editorjs/list'
-import InlineCode from '@editorjs/inline-code'
 import { useForm } from "react-hook-form"
 
 const BlogEdit = () => {
@@ -111,37 +107,6 @@ const BlogEdit = () => {
       })
     })
   }
-
-//   let editor = { isReady: false };
-
-//   useEffect(() => {
-//     try {
-//       if (!editor.isReady){
-//         editor = new EditorJS({ 
-//           holder: 'editorjs',
-//           placeholder: 'Your content...',
-//           tools: {
-//             header: Header,
-//             list: List,
-//             inlineCode: InlineCode
-//           },
-//         })
-//       }
-//     } catch (er){
-//       console.log(er)
-//     }
-//   }, [])
-
-//   const save = () => {
-//     editor
-//       .save()
-//       .then(outputData => {
-//         console.log('Article data: ', outputData);
-//       })
-//       .catch(error => {
-//         console.log('Saving failed: ', error);
-//       });
-//   };
 
   return (
     <>

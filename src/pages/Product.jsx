@@ -36,39 +36,37 @@ const Product = () => {
 
     const [liked, setLiked] = useState(false)
 
+    const StarsReview = ({score}) => {
+      const totalStars = [];
+      const filledStars = [];
+      const unfilledStars = [];
+  
+      for (let i = 0; i < score; i++){
+        filledStars.push(
+          <svg className="w-4 h-4 text-[#FFB800]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+          </svg>
+        )
+      }
+  
+      for (let i = 0; i < 5 - score; i++){
+        unfilledStars.push(
+          <svg className="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
+          </svg>
+        )
+      }
+  
+      totalStars.push(...filledStars, ...unfilledStars)
+  
+      return totalStars
+    }
+
     const items = [
       {
         title: "ตารางขนาด",
         content: (
         <>
-          {/* <div className="flex">
-            <SfIconPackage size="sm" className="flex-shrink-0 mr-1 text-neutral-500" />
-            <p className="text-sm">
-              Free shipping, arrives by Thu, Apr 7. Want it faster?
-              <SfLink href="#" variant="secondary" className="mx-1">
-                Add an address
-              </SfLink>
-              to see options
-            </p>
-          </div>
-          <div className="flex mt-4">
-            <SfIconWarehouse size="sm" className="flex-shrink-0 mr-1 text-neutral-500" />
-            <p className="text-sm">
-              Pickup not available at your shop.
-              <SfLink href="#" variant="secondary" className="ml-1">
-                Check availability nearby
-              </SfLink>
-            </p>
-          </div>
-          <div className="flex mt-4">
-            <SfIconSafetyCheck size="sm" className="flex-shrink-0 mr-1 text-neutral-500" />
-            <p className="text-sm">
-              Free 30-days returns.
-              <SfLink href="#" variant="secondary" className="ml-1">
-                Details
-              </SfLink>
-            </p>
-          </div> */}
           <div className='flex mb-9'>
             <button className='text-xs text-[#5B6CFF] w-1/3 text-center flex justify-center gap-x-[6px] items-center'>
               <AnnotationDots viewBox='0 0 24 24' width="18" height="18"/>
@@ -116,21 +114,7 @@ const Product = () => {
         content: (
           <div className='flex gap-x-3'>
             <div className="flex items-center space-x-1">
-              <svg className="w-4 h-4 text-[#FFB800]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-              </svg>
-              <svg className="w-4 h-4 text-[#FFB800]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-              </svg>
-              <svg className="w-4 h-4 text-[#FFB800]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-              </svg>
-              <svg className="w-4 h-4 text-[#FFB800]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-              </svg>
-              <svg className="w-4 h-4 text-gray-300 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-              </svg>
+              <StarsReview score={3}/>
             </div>
 
             <p className='text-[#5B6CFF]'>4.8/5.0</p>
@@ -168,7 +152,7 @@ const Product = () => {
             >
               <div className="flex justify-center h-full basis-full shrink-0 grow snap-center">
                 <img
-                  src={product?.website_image !== null && `https://dev.zaviago.com/${product?.website_image}`}
+                  src={product?.website_image !== null && `${import.meta.env.VITE_ERP_URL}${product?.website_image}`}
                   className={`object-cover w-full h-full ${product?.website_image === null && "bg-[#C5C5C5]"}`}
                   aria-label={product?.website_image}
                   alt={product?.website_image}

@@ -3,10 +3,6 @@ import { Link, useParams } from "react-router-dom"
 import { useFrappeGetDocList, useFrappeUpdateDoc, useFrappeDeleteDoc, useFrappeCreateDoc, useFrappeFileUpload } from "frappe-react-sdk"
 import { useState, useRef, useEffect } from "react";
 import SidebarAdmin from "../../components/SidebarAdmin";
-// import EditorJS from '@editorjs/editorjs'
-// import Header from '@editorjs/header'
-// import List from '@editorjs/list'
-// import InlineCode from '@editorjs/inline-code'
 import { useForm } from "react-hook-form";
 import { ArrowLeft } from '@untitled-ui/icons-react';
 
@@ -61,33 +57,6 @@ const BlogAdd = () => {
       })
     })
   }
-
-//   let editor = { isReady: false };
-
-//   useEffect(() => {
-//     if (!editor.isReady){
-//       editor = new EditorJS({ 
-//         holder: 'editorjs',
-//         placeholder: 'Your content...',
-//         tools: {
-//           header: Header,
-//           list: List,
-//           inlineCode: InlineCode
-//         }
-//       })
-//     }
-//   }, [])
-
-//   const save = () => {
-//     editor
-//       .save()
-//       .then(outputData => {
-//         console.log('Article data: ', outputData);
-//       })
-//       .catch(error => {
-//         console.log('Saving failed: ', error);
-//       });
-//   };
 
 //   Functions for uploading an image and saving onto Frappe backend
   const onUpload = (info) => {
