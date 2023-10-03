@@ -1,12 +1,40 @@
 import { ArrowLeft, MarkerPin01, AlertTriangle, FileCheck02 } from '@untitled-ui/icons-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import chevronDropdown from '../../img/chevron-right.svg'
 import TitleHeader from '../../components/TitleHeader'
+import { useFrappeGetDoc, useFrappeUpdateDoc } from 'frappe-react-sdk'
+import { useFormik } from 'formik'
 
 const EditShippingAddress = () => {
   const [province, setProvince] = useState('');
   const [modified, setModified] = useState(true);
+
+  const { id } = useParams()
+
+  const { data, loading, error } = useFrappeGetDoc('Shipping Address', id, {
+    fields: ['name', 'first_name', 'surname', 'address', 'province', 'district', 'postal_code', 'phone_number']
+  })
+
+  const provinceRef = useRef([])
+
+  const { updateDoc } = useFrappeUpdateDoc()
+
+  const formik = useFormik({
+    initialValues: {
+      first_name:data && data.first_name,
+      surname:data && data.surname,
+      address:data && data.address,
+      province:data && data.province,
+      district:data && data.district,
+      postal_code:data && data.postal_code,
+      phone_number:data && data.phone_number
+    },
+    onSubmit: (data) => {
+      updateDoc('Shipping Address', id, data)
+    }
+  })
 
   const navigate = useNavigate()
 
@@ -14,26 +42,26 @@ const EditShippingAddress = () => {
   return (
     <>
       <TitleHeader title="แก้ไขที่อยู่การจัดส่ง" link="/shipping-address" />
-      <main className='p-5 pb-[100px] mt-[53px]'>
-        <form action="#" className='flex flex-col gap-y-5'>
+      <main className='p-5 pb-[100px]'>
+      <form className='flex flex-col gap-y-5' onSubmit={formik.handleSubmit}>
           <div className='flex flex-col'>
-            <label htmlFor='receiver-name'>ชื่อผู้รับ</label>
-            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='receiver-name' name='receiver-name' type='text' />
+            <label htmlFor='first_name'>ชื่อผู้รับ</label>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='first_name' name='first_name' type='text' value={formik.values.first_name} onChange={formik.handleChange}/>
           </div>
 
           <div className='flex flex-col'>
             <label htmlFor='surname'>นามสกุล</label>
-            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='surname' name='surname' type='text'/>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='surname' name='surname' type='text' value={formik.values.surname} onChange={formik.handleChange}/>
           </div>
 
           <div className='flex flex-col'>
             <label htmlFor='address'>ที่อยู่ (ห้องเลขที่, ตึก, ถนน)</label>
-            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='address' name='address' type='text'/>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='address' name='address' type='text' value={formik.values.address} onChange={formik.handleChange}/>
           </div>
 
           <div className='flex flex-col'>
             <label htmlFor='province'>จังหวัด</label>
-            <select className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 pl-3 pr-10 mt-[11px]' id='province' name='province'>
+            <select className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 pl-3 pr-10 mt-[11px] appearance-none' value={formik.values.province} onChange={formik.handleChange} ref={provinceRef} id='province' name='province' style={{backgroundImage:"url(" + chevronDropdown + ")",backgroundPosition:"right 0.5rem center",backgroundRepeat:"no-repeat"}}>
               <option value='กรุงเทพมหานคร'>กรุงเทพมหานคร</option>
               <option value='สมุทรปราการ'>สมุทรปราการ</option>
               <option value='สมุทรสาคร'>สมุทรสาคร</option>
@@ -43,29 +71,51 @@ const EditShippingAddress = () => {
 
           <div className='flex flex-col'>
             <label htmlFor='district'>เมือง / เขต</label>
-            <select className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 pl-3 pr-10 mt-[11px]' id='district' name='district'>
-              <option value='สวนหลวง'>สวนหลวง</option>
-              <option value='บางกะปิ'>บางกะปิ</option>
-              <option value='บางนา'>บางนา</option>
-              <option value='ห้วยขวาง'>ห้วยขวาง</option>
-            </select>
+            {provinceRef.current.value === "กรุงเทพมหานคร" ? (
+              <select className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 pl-3 pr-10 mt-[11px] appearance-none' id='district' name='district' value={formik.values.district} onChange={formik.handleChange} style={{backgroundImage:"url(" + chevronDropdown + ")",backgroundPosition:"right 0.5rem center",backgroundRepeat:"no-repeat"}}>
+                <option value='สวนหลวง'>สวนหลวง</option>
+                <option value='บางกะปิ'>บางกะปิ</option>
+                <option value='บางนา'>บางนา</option>
+                <option value='ห้วยขวาง'>ห้วยขวาง</option>
+              </select>
+            ) : provinceRef.current.value === "สมุทรปราการ" ? (
+              <select className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 pl-3 pr-10 mt-[11px] appearance-none' id='district' name='district' value={formik.values.district} onChange={formik.handleChange} style={{backgroundImage:"url(" + chevronDropdown + ")",backgroundPosition:"right 0.5rem center",backgroundRepeat:"no-repeat"}}>
+                <option value='บางพลี'>บางพลี</option>
+                <option value='พระประแดง'>พระประแดง</option>
+                <option value='บางเสาธง'>บางเสาธง</option>
+                <option value='พระสมุทรเจดีย์'>พระสมุทรเจดีย์</option>
+                <option value='เมือง'>เมือง</option>
+                <option value='บางบ่อ'>บางบ่อ</option>
+              </select>
+            ) : (
+              <select className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 pl-3 pr-10 mt-[11px] appearance-none' id='district' name='district' value={formik.values.district} onChange={formik.handleChange} style={{backgroundImage:"url(" + chevronDropdown + ")",backgroundPosition:"right 0.5rem center",backgroundRepeat:"no-repeat"}}>
+                <option value='บางพลี'>ลำลูกกา</option>
+                <option value='ธัญบุรี'>ธัญบุรี</option>
+                <option value='คลองหลวง'>คลองหลวง</option>
+                <option value='ลาดหลุมแก้ว'>ลาดหลุมแก้ว</option>
+                <option value='เมือง'>เมือง</option>
+                <option value='สามโคก'>สามโคก</option>
+                <option value='หนองเสือ'>หนองเสือ</option>
+              </select>
+            )}
           </div>
 
           <div className='flex flex-col'>
-            <label htmlFor='postal-code'>รหัสไปรษณีย์</label>
-            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='postal-code' name='postal-code' type='text'/>
+            <label htmlFor='postal_code'>รหัสไปรษณีย์</label>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='postal_code' name='postal_code' value={formik.values.postal_code} onChange={formik.handleChange} type='text'/>
           </div>
 
           <div className='flex flex-col'>
-            <label htmlFor='phone'>เบอร์โทรศัพท์</label>
-            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='phone' name='phone' type='tel'/>
+            <label htmlFor='phone_number'>เบอร์โทรศัพท์</label>
+            <input className='border border-[#E3E3E3] rounded-[8px] outline-none py-2 px-3 mt-[11px]' id='phone_number' name='phone_number' value={formik.values.phone_number} onChange={formik.handleChange} type='tel'/>
             <p className="text-xs text-[#474747] mt-[11px]">ที่ให้ต้องการให้ค้นส่งติดต่อแจ้งเมื่อมีการจัดส่ง</p>
           </div>
+
+          <footer className="py-5 fixed bottom-0" style={{width:"calc(100% - 40px)"}}>
+            <button type='submit' onClick={() => setOpenSuccess(true)} className={`block mt-[14px] w-1/2 text-white rounded-[9px] p-3 text-center w-full ${!modified ? "bg-[#C5C5C5] border border-[#C5C5C5]" : "bg-[#111111] border border-[#111111]"}`} disabled={!modified}>บันทึกที่อยู่</button>
+          </footer>
         </form>
       </main>
-      <footer className="p-5 fixed bottom-0 w-full">
-        <button onClick={() => setOpenSuccess(true)} className={`block mt-[14px] w-1/2 text-white rounded-[9px] p-3 text-center w-full ${!modified ? "bg-[#C5C5C5] border border-[#C5C5C5]" : "bg-[#111111] border border-[#111111]"}`} disabled={!modified}>บันทึกที่อยู่</button>
-      </footer>
 
       <Transition.Root show={openSuccess} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={setOpenSuccess}>

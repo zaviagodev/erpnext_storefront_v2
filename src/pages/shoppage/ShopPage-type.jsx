@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import TitleHeader from "../components/TitleHeader"
-import Accordion from '../components/Accordion'
+import TitleHeader from "../../components/TitleHeader"
+import Accordion from '../../components/Accordion'
 import { Link } from 'react-router-dom'
 
 const ShopPageType = ({min, max, onChange}) => {

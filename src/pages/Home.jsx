@@ -17,11 +17,8 @@ import activity5 from '../img/activity5.svg'
 import activity6 from '../img/activity6.svg'
 import activity7 from '../img/activity7.svg'
 import activity8 from '../img/activity8.svg'
-import discountfive from '../img/discountfive.png'
 import promotion1 from '../img/promotion1.png'
 import promotion2 from '../img/promotion2.png'
-import bannerDiscount1 from '../img/banner-discount1.png'
-import bannerDiscount2 from '../img/banner-discount2.png'
 import NavHeader from '../components/NavHeader';
 import FooterMenu from '../components/FooterMenu'
 

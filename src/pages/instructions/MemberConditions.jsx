@@ -1,17 +1,18 @@
 import React from 'react'
-import FooterMenu from "../components/FooterMenu"
-import TitleHeader from '../components/TitleHeader';
+import FooterMenu from "../../components/FooterMenu"
+import TitleHeader from '../../components/TitleHeader';
 import { useFrappeGetCall, useFrappeGetDoc, useFrappeGetDocList, useFrappeAuth } from 'frappe-react-sdk';
 
-function HowRedeemReward() {
+function MemberConditions() {
     const { currentUser } = useFrappeAuth()
 
-    const { data } = useFrappeGetDoc('How To Redeem Rewards', {
+    const { data } = useFrappeGetDoc('Member Conditions', {
       fields: ['description']
     })
+
     return (
         <>
-            <TitleHeader link={'/my-account'} title={'วิธีแลกของรางวัล'} />
+            <TitleHeader link={'/my-account'} title={'เงื่อนไขระดับของสมาชิก'} />
             {data && (
                 <div className="px-[20px] pt-9 mb-[120px] mt-[53px]">
                     {/* <h2 className='text-base font-bold' style={{ fontFamily: "Eventpop" }}>{data.title}</h2> */}
@@ -23,4 +24,4 @@ function HowRedeemReward() {
     )
 }
 
-export default HowRedeemReward
+export default MemberConditions

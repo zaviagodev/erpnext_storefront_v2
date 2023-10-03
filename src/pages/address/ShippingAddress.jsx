@@ -3,18 +3,23 @@ import { Link } from 'react-router-dom'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import TitleHeader from '../../components/TitleHeader'
+import { useFrappeGetDocList } from 'frappe-react-sdk'
 
 const ShippingAddress = () => {
   const [openDelete, setOpenDelete] = useState(false)
   const [openSuccess, setOpenSuccess] = useState(false)
 
-  const AddressInfo = ({name, address}) => {
+  const { data, loading, error } = useFrappeGetDocList('Shipping Address', {
+    fields: ['name', 'first_name', 'surname', 'address', 'province', 'district', 'postal_code', 'phone_number']
+  })
+
+  const AddressInfo = ({name, address, index}) => {
     return (
       <div className='bg-[#F4F4F4] p-5 rounded-[7px] h-[126px]'>
         <div className='flex justify-between'>
           {name}
           <div className='flex gap-x-4'>
-            <Link to="/shipping-address/edit">แก้ไข</Link>
+            <Link to={`/shipping-address/edit/${data && data.name}`}>แก้ไข</Link>
             <button onClick={() => setOpenDelete(true)}>ลบ</button>
           </div>
         </div>
@@ -23,13 +28,16 @@ const ShippingAddress = () => {
     )
   }
 
+  console.log(data)
+
   return (
     <>
       <TitleHeader title="ที่อยู่ของคุณ" link="/my-account" />
 
       <main className='p-5 flex flex-col gap-y-[12px] mt-[53px]'>
-        <AddressInfo name="John Persson" address="999/99 อาคาร แบงเทรดดิ้ง ชั้นสอง บริษัท ซาเวียโก จำกัด เขตสวนหลวง..."/>
-        <AddressInfo name="John Persson" address="999/99 อาคาร แบงเทรดดิ้ง ชั้นสอง บริษัท ซาเวียโก จำกัด เขตสวนหลวง..."/>
+        {(data ?? []).map((d, index) => 
+          <AddressInfo index={index} name={`${d.first_name} ${d.surname}`} address={`${d.address} ${d.district} ${d.province} ${d.postal_code}`}/>
+        )}
         <Link to="/shipping-address/add" className='bg-[#F4F4F4] p-5 rounded-[7px]'>
           <div className='flex gap-x-[7px] justify-center'>
             <MarkerPin01 />

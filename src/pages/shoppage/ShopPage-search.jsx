@@ -1,14 +1,14 @@
 import { ShoppingBag01, ArrowLeft } from "@untitled-ui/icons-react"
-import searchIcon from '../img/search-md-black.svg'
+import searchIcon from '../../img/search-md-black.svg'
 import { Link } from "react-router-dom"
 import { useState } from "react"
-import youmaylike1 from '../img/youmaylike1.svg';
-import youmaylike2 from '../img/youmaylike2.svg';
-import youmaylike3 from '../img/youmaylike3.svg';
-import youmaylike4 from '../img/youmaylike4.svg';
-import ProductCard from "../components/ProductCard";
+import youmaylike1 from '../../img/youmaylike1.svg';
+import youmaylike2 from '../../img/youmaylike2.svg';
+import youmaylike3 from '../../img/youmaylike3.svg';
+import youmaylike4 from '../../img/youmaylike4.svg';
+import ProductCard from "../../components/ProductCard";
 import { SfIconArrowForward } from "@storefront-ui/react";
-import { useProducts } from "../hooks/useProducts";
+import { useProducts } from "../../hooks/useProducts";
 
 const ShopPageSearch = () => {
   const latestSearches = ['เสื้อ', 'กางเกง', 'รองเท้า']

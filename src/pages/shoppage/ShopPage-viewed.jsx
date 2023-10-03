@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom"
 import { ArrowLeft, ShoppingBag01 } from "@untitled-ui/icons-react"
-import searchIcon from '../img/search-md-black.svg'
-import { useProducts } from "../hooks/useProducts"
-import ProductCard from "../components/ProductCard"
+import searchIcon from '../../img/search-md-black.svg'
+import { useProducts } from "../../hooks/useProducts"
+import ProductCard from "../../components/ProductCard"
 
 const ShopPageViewed = () => {
   const { products } = useProducts()

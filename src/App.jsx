@@ -14,19 +14,24 @@ import Profile from "./pages/Profile";
 import { UserProvider } from "./hooks/useUser";
 import { getToken } from "./utils/helper";
 import BankInfoPage from "./pages/BankInfoPage";
-import LoyaltyProgram from "./pages/LoyaltyProgram";
 import MyAccount from "./pages/MyAccount";
 import MyID from "./pages/MyID";
-import Consent from "./pages/Consent";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import HowRedeemReward from "./pages/HowRedeemReward";
-import MemberConditions from "./pages/MemberConditions";
+import Consent from "./pages/instructions/Consent";
+import TermsAndConditions from "./pages/instructions/TermsAndConditions";
+import HowRedeemReward from "./pages/instructions/HowRedeemReward";
+import MemberConditions from "./pages/instructions/MemberConditions";
+import CollectPoints from "./pages/instructions/CollectPoints";
 import MyOrder from "./pages/MyOrder";
 import MyOrderDetails from "./pages/MyOrderDetails";
 import RewardHistory from "./pages/RewardHistory";
 import ShippingAddress from "./pages/address/ShippingAddress";
 import AddShippingAddress from "./pages/address/ShippingAddressAdd";
 import EditShippingAddress from "./pages/address/ShippingAddressEdit";
+import ShopPage from "./pages/shoppage/ShopPage";
+import ShopPageFilter from "./pages/shoppage/ShopPage-filter";
+import ShopPageType from "./pages/shoppage/ShopPage-type";
+import ShopPageViewed from "./pages/shoppage/ShopPage-viewed"
+import ShopPageSearch from "./pages/shoppage/ShopPage-search"
 
 function App() {
   const navigate = useNavigate();
@@ -54,9 +59,9 @@ function App() {
               <Route path="/terms-and-conditions" element={<TermsAndConditions />}/>
               <Route path="/how-to-collect-rewards" element={<HowRedeemReward />} />
               <Route path="/member-conditions" element={<MemberConditions />} />
+              <Route path="/collect-points" element={<CollectPoints />} />
               <Route path="products/:id" element={<Product />} />
               <Route path="/checkout" element={<Checkout />} />
-              <Route path="/loyality-program" element={<LoyaltyProgram />} />
               <Route path="/thankyou" element={<BankInfoPage />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
@@ -67,7 +72,7 @@ function App() {
               <Route path="/reward-history" element={<RewardHistory />} />
               <Route path="/shipping-address" element={<ShippingAddress />}/>
               <Route path="/shipping-address/add" element={<AddShippingAddress />}/>
-              <Route path="/shipping-address/edit" element={<EditShippingAddress />}/>
+              <Route path="/shipping-address/edit/:id" element={<EditShippingAddress />}/>
             </Routes>
             <Cart />
           </CartProvider>

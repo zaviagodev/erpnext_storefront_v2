@@ -1,11 +1,11 @@
-import FooterMenu from "../components/FooterMenu"
-import searchIcon from '../img/search-md-black.svg'
-import { useCart } from '../hooks/useCart';
+import FooterMenu from "../../components/FooterMenu"
+import searchIcon from '../../img/search-md-black.svg'
+import { useCart } from '../../hooks/useCart';
 import { ShoppingBag01, ChevronRight, ArrowLeft } from "@untitled-ui/icons-react";
 import { Link } from "react-router-dom";
-import newItem from '../img/new-item.png'
-import ProductCard from "../components/ProductCard";
-import { useProducts } from '../hooks/useProducts'
+import newItem from '../../img/new-item.png'
+import ProductCard from "../../components/ProductCard";
+import { useProducts } from '../../hooks/useProducts'
 import { useState } from "react";
 
 const ShopPage = () => {
