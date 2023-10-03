@@ -1,7 +1,7 @@
 import React from 'react'
 import FooterMenu from "../components/FooterMenu"
 import TitleHeader from '../components/TitleHeader';
-import useFrappeGetDoc from 'frappe-react-sdk'
+import { useFrappeGetDoc } from 'frappe-react-sdk'
 
 function Consent() {
     const { data } = useFrappeGetDoc('Data Disclosure Consent', {

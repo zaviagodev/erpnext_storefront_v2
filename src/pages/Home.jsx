@@ -45,7 +45,7 @@ const Home = () => {
     }, [userdata]);
 
     const { data:dataBlog, isLoading:isLoadingBlog, error:errorBlog } = useFrappeGetDocList('Blog Post', {
-      fields: ['name', 'title', 'meta_image']
+      fields: ['name', 'title', 'meta_image', 'published_on']
     })
 
     const { data:dataBanner, isLoading:isLoadingBanner, error:errorBanner } = useFrappeGetDocList('Promotion Banner', {
@@ -135,7 +135,9 @@ const Home = () => {
               <h2 className='mt-[30px] px-5 inter font-semibold text-[#3D3D3D]'>Celebrate Mid Year Festival</h2>
               
               <div className='mt-3 flex overflow-x-scroll gap-x-6 px-5'>
-                <PromotionCard link="/checkout" title="ของขวัญแสนพิเศษในวันที่แสนพิเศษ รับทันที ส่วนลด 50 % สำหรับเดือนเกิด" image={discountfive} date="อายุการใช้งาน 1 เดือนหลังจากได้รับคูปอง" />
+                {(dataBanner ?? []).map((banner) => 
+                  <PromotionCard key={banner.name} link="/checkout" title={banner.title} image={banner.image} date="อายุการใช้งาน 1 เดือนหลังจากได้รับคูปอง" />
+                )}
               </div>
 
               <div className='flex flex-col gap-y-[11px] mt-[30px] px-5'>
@@ -216,8 +218,8 @@ const Home = () => {
                 </h2>
 
                 <div className="flex overflow-x-auto gap-x-[14px] mx-auto px-5">
-                  {(dataBanner ?? []).map((d) => 
-                    <BlogCard key={d.name} image={d.image} title={d.title} date={d.expiration_date} />
+                  {(dataBlog ?? []).map((d) => 
+                    <BlogCard key={d.name} image={d.meta_image} title={d.title} date={d.published_on} />
                   )}
                 </div>
               </div>

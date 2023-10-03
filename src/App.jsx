@@ -17,6 +17,12 @@ import BankInfoPage from "./pages/BankInfoPage";
 import LoyaltyProgram from "./pages/LoyaltyProgram";
 import MyAccount from "./pages/MyAccount";
 import Consent from "./pages/Consent";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import HowRedeemReward from "./pages/HowRedeemReward";
+import MemberConditions from "./pages/MemberConditions";
+import MyOrder from "./pages/MyOrder";
+import MyOrderDetails from "./pages/MyOrderDetails";
+import RewardHistory from "./pages/RewardHistory";
 
 function App() {
   const navigate = useNavigate();
@@ -41,6 +47,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/consent" element={<Consent />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditions />}/>
+              <Route path="/how-to-collect-rewards" element={<HowRedeemReward />} />
+              <Route path="/member-conditions" element={<MemberConditions />} />
               <Route path="products/:id" element={<Product />} />
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/loyality-program" element={<LoyaltyProgram />} />
@@ -48,6 +57,9 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/my-account" element={<MyAccount />}/>
+              <Route path="/my-order" element={<MyOrder />}/>
+              <Route path="/my-order-details/:id" element={<MyOrderDetails />}/>
+              <Route path="/reward-history" element={<RewardHistory />} />
             </Routes>
             <Cart />
           </CartProvider>
