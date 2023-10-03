@@ -2,7 +2,6 @@ import { ArrowLeft, MarkerPin01, AlertTriangle } from '@untitled-ui/icons-react'
 import { Link } from 'react-router-dom'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import myqr from '../img/my-qrcode.svg'
 import silverCard from '../img/silvercard.svg'
 import coin from '../img/coin.svg'
 import coupon from '../img/coupon.svg'
@@ -14,36 +13,22 @@ const MyID = () => {
   const [bronzeLevel, setBronzeLevel] = useState(false);
   const [silverLevel, setSilverLevel] = useState(true);
 
-  const [qrcode, setQrcode] = useState(true);
-  const [barcode, setBarcode] = useState(false);
-
-  const switchToQrcode = () => {
-    setQrcode(true);
-    setBarcode(false);
-  }
-
-  const switchToBarcode = () => {
-    setQrcode(false);
-    setBarcode(true);
-  }
+  const [currentPage, setCurrentPage] = useState(1)
 
   return (
     <>
       <TitleHeader title="ID ของฉัน" link="/my-account" />
       <main className='p-5 mt-[53px]'>
         <div className='inline-block w-full'>
-          <button className='p-4 my-2 w-1/2 border-r border-r-[#F2F2F2]' onClick={switchToQrcode}>QR Code</button>
-          <button className='p-4 my-2 w-1/2' onClick={switchToBarcode}>Barcode</button>
+          <button className='p-4 my-2 w-1/2 border-r border-r-[#F2F2F2]' onClick={() => setCurrentPage(1)}>QR Code</button>
+          <button className='p-4 my-2 w-1/2' onClick={() => setCurrentPage(2)}>Barcode</button>
 
           <div className='flex flex-col justify-center'>
-            {qrcode && (
-              <>
-                {/* <img src={myqr} className='m-auto'/> */}
-                <QRCode size={200} value="my-name" style={{border:"4px solid #00000029",borderRadius:"24px",padding:"10px",margin:"auto"}}/>
-              </>
+            {currentPage === 1 && (
+              <QRCode size={200} value="my-name" style={{border:"4px solid #00000029",borderRadius:"24px",padding:"10px",margin:"auto"}}/>
             )}
 
-            {barcode && (
+            {currentPage === 2 && (
               <div className='flex justify-center'>
                 <Barcode value='my-name'/>
               </div>
