@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import avatarImg from '../img/avatar.svg'
 import silverCard from '../img/silvercard.svg'
 import qrcode from '../img/qrcode.svg'
-import recentViews from '../img/clock-rewind.svg'
 import { useState, useEffect, Fragment } from 'react'
 import NavHeader from '../components/NavHeader'
 import { Dialog, Transition } from '@headlessui/react'

@@ -16,6 +16,7 @@ import { getToken } from "./utils/helper";
 import BankInfoPage from "./pages/BankInfoPage";
 import LoyaltyProgram from "./pages/LoyaltyProgram";
 import MyAccount from "./pages/MyAccount";
+import MyID from "./pages/MyID";
 import Consent from "./pages/Consent";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import HowRedeemReward from "./pages/HowRedeemReward";
@@ -23,6 +24,9 @@ import MemberConditions from "./pages/MemberConditions";
 import MyOrder from "./pages/MyOrder";
 import MyOrderDetails from "./pages/MyOrderDetails";
 import RewardHistory from "./pages/RewardHistory";
+import ShippingAddress from "./pages/address/ShippingAddress";
+import AddShippingAddress from "./pages/address/ShippingAddressAdd";
+import EditShippingAddress from "./pages/address/ShippingAddressEdit";
 
 function App() {
   const navigate = useNavigate();
@@ -57,9 +61,13 @@ function App() {
               <Route path="/profile" element={<Profile />} />
               <Route path="/login" element={<Login />} />
               <Route path="/my-account" element={<MyAccount />}/>
+              <Route path="/my-id" element={<MyID />}/>
               <Route path="/my-order" element={<MyOrder />}/>
               <Route path="/my-order-details/:id" element={<MyOrderDetails />}/>
               <Route path="/reward-history" element={<RewardHistory />} />
+              <Route path="/shipping-address" element={<ShippingAddress />}/>
+              <Route path="/shipping-address/add" element={<AddShippingAddress />}/>
+              <Route path="/shipping-address/edit" element={<EditShippingAddress />}/>
             </Routes>
             <Cart />
           </CartProvider>
