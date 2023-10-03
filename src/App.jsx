@@ -27,6 +27,10 @@ import RewardHistory from "./pages/RewardHistory";
 import ShippingAddress from "./pages/address/ShippingAddress";
 import AddShippingAddress from "./pages/address/ShippingAddressAdd";
 import EditShippingAddress from "./pages/address/ShippingAddressEdit";
+import Welcome from "./pages/register/Welcome";
+import Signup from "./pages/register/Signup";
+import FillInfo from "./pages/register/FillInfo";
+import Success from "./pages/register/Success";
 import ShopPage from "./pages/shoppage/ShopPage";
 import ShopPageFilter from "./pages/shoppage/ShopPage-filter";
 import ShopPageType from "./pages/shoppage/ShopPage-type";
@@ -73,6 +77,10 @@ function App() {
               <Route path="/shipping-address" element={<ShippingAddress />}/>
               <Route path="/shipping-address/add" element={<AddShippingAddress />}/>
               <Route path="/shipping-address/edit/:id" element={<EditShippingAddress />}/>
+              <Route path="/welcome" element={<Welcome />}/>
+              <Route path="/signup" element={<Signup />}/>
+              <Route path="/fill-info" element={<FillInfo />}/>
+              <Route path="/success" element={<Success />}/>
             </Routes>
             <Cart />
           </CartProvider>
