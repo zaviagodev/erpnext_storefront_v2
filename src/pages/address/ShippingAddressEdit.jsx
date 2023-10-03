@@ -1,12 +1,36 @@
 import { ArrowLeft, MarkerPin01, AlertTriangle, FileCheck02 } from '@untitled-ui/icons-react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import TitleHeader from '../../components/TitleHeader'
+import { useFrappeGetDoc } from 'frappe-react-sdk'
 
 const EditShippingAddress = () => {
   const [province, setProvince] = useState('');
   const [modified, setModified] = useState(true);
+
+  const { id } = useParams()
+
+  const { data, loading, error } = useFrappeGetDoc('Shipping Address', id, {
+    fields: ['name', 'first_name', 'surname', 'address', 'province', 'district', 'postal_code', 'phone_number']
+  })
+
+  const { updateDoc } = useFrappeUpdateDoc()
+
+  const formik = useFormik({
+    initialValues: {
+      first_name:data && data.first_name,
+      surname:data && data.surname,
+      address:'',
+      province:'',
+      district:'',
+      postal_code:'',
+      phone_number:''
+    },
+    onSubmit: (data) => {
+      createDoc('Shipping Address', data)
+    }
+  })
 
   const navigate = useNavigate()
 
